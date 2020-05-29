@@ -1,0 +1,3712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular complete notes</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <style>
+
+        body
+        {
+            background-color: darkslateblue;
+        }
+
+        .header
+        {
+            padding: 10px 10px 20px 50px;            
+            color: white;
+        }
+
+        .grid-container 
+        {
+            display: grid;
+            grid-template-columns: 1fr 4fr;
+            grid-template-rows: 1fr;
+            grid-column-gap: 0px;
+            grid-row-gap: 0px; 
+            background-color: white;
+        }
+
+        .grid-item
+        {
+            border: 1px solid black;
+            height: 750px;
+            overflow-y : scroll;            
+        }
+
+        .toc
+        {
+            padding-top : 10px;
+            padding-left: 0px;
+        }
+        
+        .content
+        {
+        
+            padding: 0px;
+            display: none;
+        }
+
+        .title
+        {
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .article
+        {
+            padding: 10px;
+        }
+
+        pre
+        {
+            border : 1px solid white;
+        }
+
+        .code
+        {            
+            color:darkgreen;
+            border: 1px dotted darkgreen;
+            margin : 20px 50px 20px 50px;
+        }
+
+        u
+        {
+            font-weight: bold;
+        }
+
+        li
+        {
+            list-style: none;
+            border-bottom : 1px solid black;
+            justify-content: center;
+            text-align: center;
+            transform: translateX(-17px);
+            padding : 5px;
+        }
+
+        li:hover
+        {
+            cursor: pointer;
+            color: red;
+            font-weight: bold;
+        }
+
+        .section_content
+        {
+            display: none;
+        }
+
+        .section:hover
+        {
+            cursor: pointer;
+            font-style: italic;
+            background-color: darkslateblue;
+            color: white;
+        }
+
+        .section
+        {
+            margin-bottom: -15px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png" height="70px"> Angular complete notes</h2>
+    </div>
+    <div class="grid-container">
+        <div class="grid-item">
+            <div class="toc">
+                <div class="title"><h4><u>Table of contents</u></h4></div>
+                <br>
+                <p class="section" onclick="toggleSection(1)"><b>&nbsp;S1 : The Basics</b></p>
+                <ul class="section_content" id="sc1">
+                    <li onclick="showNote(1)" id="toc1">Installation</li>
+                    <li onclick="showNote(2)" id="toc2">Creating a new app</li>
+                    <li onclick="showNote(3)" id="toc3">Running an app</li>
+                    <li onclick="showNote(4)" id="toc4">Deploying an app</li>
+                    <li onclick="showNote(5)" id="toc5">Angular workflow</li>                    
+                    <li onclick="showNote(7)" id="toc7">ngIf</li>
+                    <li onclick="showNote(29)" id="toc29">ngSwitch</li>
+                    <li onclick="showNote(8)" id="toc8">ngStyle</li>
+                    <li onclick="showNote(9)" id="toc9">ngClass</li>
+                    <li onclick="showNote(10)" id="toc10">ngFor</li>
+                    <li onclick="showNote(12)" id="toc12">Installing bootstrap</li>
+                    <li onclick="showNote(13)" id="toc13">Components</li>
+                    <li onclick="showNote(14)" id="toc14">Databinding</li>
+                    <li onclick="showNote(6)" id="toc6">ngModel Example</li>
+                    <li onclick="showNote(15)" id="toc15">Object model</li>
+                    <li onclick="showNote(16)" id="toc16">Debugging</li>
+                </ul>
+                <br>
+                <p class="section" onclick="toggleSection(2)"><b>&nbsp;S2 : Components & databinding</b></p>
+                <ul class="section_content" id="sc2">
+                    <li onclick="showNote(17)" id="toc17">Component communications</li>
+                    <li onclick="showNote(18)" id="toc18">View encapsulation</li>
+                    <li onclick="showNote(19)" id="toc19">Local references</li>
+                    <li onclick="showNote(20)" id="toc20">ViewChild</li>
+                    <li onclick="showNote(21)" id="toc21">Component lifecycle</li>
+                    <li onclick="showNote(22)" id="toc22">Projecting with ng-content</li>
+                    <li onclick="showNote(23)" id="toc23">ContentChild</li>
+                </ul>
+                <br>
+                <p class="section" onclick="toggleSection(3)" id="section3"><b>&nbsp;S3 : Directives</b></p>
+                <ul class="section_content" id="sc3">
+                    <li onclick="showNote(11)" id="toc11">Directives</li>
+                    <li onclick="showNote(24)" id="toc24">Renderer</li>
+                    <li onclick="showNote(25)" id="toc25">HostListener</li>
+                    <li onclick="showNote(26)" id="toc26">HostBinding</li>
+                    <li onclick="showNote(27)" id="toc27">Binding to directive properties</li>
+                    <li onclick="showNote(28)" id="toc28">Creating structural properties</li>
+                </ul>
+                <br>
+                <p class="section" onclick="toggleSection(4)" id="section4"><b>&nbsp;S4 : Services</b></p>
+                <ul class="section_content" id="sc4">
+                    <li onclick="showNote(30)" id="toc30">Creating a service</li>
+                    <li onclick="showNote(31)" id="toc31">Dependency injection</li>
+                    <li onclick="showNote(32)" id="toc32">Hierarchical Injector</li>
+                    <li onclick="showNote(33)" id="toc33">Services in Services</li>
+                    <li onclick="showNote(34)" id="toc34">Cross-component coms</li>
+                    <li onclick="showNote(35)" id="toc35">New way to provide services</li>
+                </ul>
+                <br>
+                <p class="section" onclick="toggleSection(5)" id="section5"><b>&nbsp;S5 : Routing</b></p>
+                <ul class="section_content" id="sc5">
+                    <li onclick="showNote(36)" id="toc36">Creating routes</li>
+                    <li onclick="showNote(37)" id="toc37">Router link</li>
+                    <li onclick="showNote(38)" id="toc38">Active links</li>
+                    <li onclick="showNote(39)" id="toc39">Navigate programmaticaly</li>
+                    <li onclick="showNote(40)" id="toc40">Route parameters</li>
+                    <li onclick="showNote(41)" id="toc41">Query parameters</li>
+                    <li onclick="showNote(42)" id="toc42">Nested routes</li>
+                    <li onclick="showNote(43)" id="toc43">Saving the parameters</li>
+                    <li onclick="showNote(44)" id="toc44">Redirection</li>
+                    <li onclick="showNote(45)" id="toc45">Outsourcing the route config</li>
+                    <li onclick="showNote(46)" id="toc46">CanActivate Guard</li>
+                    <li onclick="showNote(47)" id="toc47">CanDeactivate Guard</li>
+                    <li onclick="showNote(48)" id="toc48">Passing static data</li>
+                    <li onclick="showNote(49)" id="toc49">Passing dynamic data</li>
+                </ul>
+                <br>
+                <p class="section" onclick="toggleSection(6)" id="section6"><b>&nbsp;S6 : Observables</b></p>
+                <ul class="section_content" id="sc6">
+                    <li onclick="showNote(50)" id="toc50">Introduction</li>
+                    <li onclick="showNote(51)" id="toc51">Using an observable</li>
+                    <li onclick="showNote(52)" id="toc52">Custom observable</li>
+                    <li onclick="showNote(53)" id="toc53">Operators</li>
+                    <li onclick="showNote(54)" id="toc54">Subjects</li>
+                </ul>
+                <br>
+                <p class="section" onclick="toggleSection(7)" id="section7"><b>&nbsp;S7 : Forms</b></p>
+                <ul class="section_content" id="sc7">
+                    <li onclick="showNote(55)" id="toc55">Introduction</li>
+                    <li onclick="showNote(56)" id="toc56">TD setup</li>
+                    <li onclick="showNote(57)" id="toc57">TD validation</li>
+                    <li onclick="showNote(58)" id="toc58">TD Selecting</li>
+                    <li onclick="showNote(59)" id="toc59">TD Grouping values</li>
+                    <li onclick="showNote(60)" id="toc60">TD Radio buttons</li>
+                    <li onclick="showNote(61)" id="toc61">TD Setting and patching</li>
+                    <li onclick="showNote(62)" id="toc62">TD Resetting</li>
+                    <li onclick="showNote(63)" id="toc63">Reactive Setup</li>
+                    <li onclick="showNote(64)" id="toc64">Reactive Create form</li>
+                    <li onclick="showNote(65)" id="toc65">Reactive Validation</li>
+                    <li onclick="showNote(66)" id="toc66">Reactive Access to controls</li>
+                    <li onclick="showNote(67)" id="toc67">Reactive Grouping controls</li>
+                    <li onclick="showNote(68)" id="toc68">Reactive Adding controls</li>
+                    <li onclick="showNote(69)" id="toc69">Reactive Custom validators</li>
+                    <li onclick="showNote(70)" id="toc70">Reactive Async validators</li>
+                    <li onclick="showNote(71)" id="toc71">Reactive Status / Value changes</li>
+                    <li onclick="showNote(72)" id="toc72">Reactive setting values</li>
+                </ul>
+                <br>
+                <p class="section" onclick="toggleSection(8)" id="section8"><b>&nbsp;S8 : Pipes</b></p>
+                <ul class="section_content" id="sc8">
+                    <li onclick="showNote(73)" id="toc73">Using pipes</li>
+                    <li onclick="showNote(74)" id="toc74">Chaining pipes</li>
+                    <li onclick="showNote(75)" id="toc75">Custom pipes</li>
+                    <li onclick="showNote(76)" id="toc76">Async pipes</li>
+                </ul>
+                <br>
+                <p class="section" onclick="toggleSection(9)" id="section9"><b>&nbsp;S9 : HTTP</b></p>
+                <ul class="section_content" id="sc9">
+                    <li onclick="showNote(77)" id="toc77">Introduction</li>
+                </ul>
+            </div>
+        </div>
+        <div class="grid-item article">
+
+
+
+<!-- TEMPLATE NOTE-->
+<!-- start note-->
+<div class="content" id="c0">
+<h3>title</h3>
+<br>
+<pre>
+</pre>
+</div>
+<!-- end note -->
+<!-- TEMPLATE NOTE-->
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c77">
+<h3>Introduction to HTTP requests</h3>
+<br>
+<pre>
+We will communicate to a database server through an REST API.
+
+<u>Terminology :</u>
+
+HTTP verb : POST, GET, PUT, ... => which kind of request
+URL aka API endpoint, ex : /posts/1
+Headers => metadata
+Body => data for POST, PUT, PATCH requests
+
+<u>Creating a quick backend</u>
+
+We will use Firebase => Database => realtime database in test mode :
+
+https://angular-api-testing.firebaseio.com/
+
+<u>Sending a post request</u>
+
+In the appModule, we need to import HttpClientModule :
+<pre class='code'>
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+    ...
+    imports: [HttpClientModule],
+    ...
+})
+</pre>Then in the ts file, we inject our http client :
+<pre class='code'>
+import { HttpClient } from '@angular/common/http';
+
+constructor(private http : HttpClient){}
+</pre>Send a post request :
+
+A firebase requirement is to append posts.json to the api endpoint.
+Angular will convert automatically our object into a json format when sending it in the request body.
+<pre class='code'>
+this.http.post(url_api + "posts.json", request_body)
+</pre> 
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c76">
+<h3>Async pipes</h3>
+<br>
+<pre>
+Applied on observables or promises data :
+<pre class='code'>
+{{ appStatus | async }}
+</pre>Will update the value of the data in the view when it is returned.
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c75">
+<h3>Creating custom pipes</h3>
+<br>
+<pre>
+As an example, we will create a pipe that shortens a word.
+
+<u>CLI way :</u>
+<pre class='code'>
+ng g p pipe_name
+</pre><u>Manual way :</u>
+
+1. Create a file name shorten.pipe.ts in the root directory
+
+2. Code in that file :
+<pre class='code'>
+@Pipe({
+    name:'shorten',
+    pure : false        // by default is true, recalculates the pipe each time the data changes
+                        // might create performance behavior with a long list
+})
+import { Pipe, PipeTransform } from "@angular/core";
+
+export class ShortenPipe implements PipeTransform
+{
+    transform(value: any) 
+    {
+        return value.substring(0,4) + "...";
+    }    
+}
+</pre>3. In the appModule.ts :
+<pre class='code'>
+import { ShortenPipe } from './shorten.pipe'
+
+@NgModule(
+{
+    declarations: 
+    [
+      AppComponent,
+      ShortenPipe     &lt;===
+    ],
+    ... 
+}
+</pre>It is ready to be used.
+
+<u>Configuring the custom pipe :</u>
+
+We're going to return a string with a given limited substring :
+<pre class='code'>
+transform(value: any, limit : number) 
+{
+    return value.substring(0, limit) + "...";
+}    
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c74">
+<h3>Chaining pipes</h3>
+<br>
+<pre>
+We can chain pipes with the | symbol. They are applied from left to right :
+<pre class='code'>
+pipe_1 | pipe_2 | ...
+</pre>!!! Order is important !!!
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c73">
+<h3>Using pipes</h3>
+<br>
+<pre>
+Pipes are used to transform output in the template. 
+
+<u>Example : Uppercase</u>
+<pre class='code'>
+{{ username | uppercase}}
+</pre><u>Example : date</u>
+<pre class='code'>
+{{ username | date}}
+</pre><u>Configuring a pipe</u>
+
+Syntax : pipe_name:'value_1':'value_2':...
+<pre class='code'>
+    {{ username | date:'fullDate'}}
+</pre><u>List of pipes :</u>
+
+Click <a href="https://angular.io/api" target="#">here</a> and put pipe in the filter control.
+
+
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c72">
+<h3>Reactive - Setting and patching values</h3>
+<br>
+<pre>
+Setting all the values of the form at once :
+<pre class='code'>
+this.signupForm.setValue({our signup object})
+</pre>Setting one value of the form at once :
+<pre class='code'>
+this.signupForm.patchValue({'username':'Mike'})
+</pre>Resetting the form :
+<pre class='code'>
+this.signupForm.reset()
+</pre>!!! Note : you can pass an object to reset() to reset specific values !!!
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c71">
+<h3>Reactive - Reacting to status or value changes</h3>
+<br>
+<pre>
+There is a form state you can track by checking two observables :
+
+* this.signupForm.valueChanges :
+<pre class='code'>
+this.signupForm.valueChanges.subscribe(
+    (value) =>
+    {
+    console.log(value);
+    }
+);</pre>
+* this.signupForm.statusChanges :
+<pre class='code'>
+this.signupForm.statusChanges.subscribe(
+    (value) =>
+    {
+    console.log(value);
+    }
+);
+</pre>Here we can see multiples states : VALID, PENDING, INVALID
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c70">
+<h3>Reactive - Creating a custom async validator</h3>
+<br>
+<pre>
+We want to create a validator that will take some time to process, like a response from a server.
+
+Instead of returning an object { string: boolean}, we will return a promise or an observervable of any type :
+<pre class='code'>
+// step 1 : creating our custom validator
+forbiddenEmails(control : FormControl) : Promise&lt;any&gt; | Observable&lt;any&gt;
+{
+    const promise = new Promise&lt;any&gt;((resolve, reject)=&gt;{
+    setTimeout(()=&gt;{
+        if (control.value === 'test@test.com')
+        resolve({'emailIsForbidden': true});
+        else
+        resolve(null);
+    }, 1500);
+    });
+
+    return promise;
+}
+
+// step 2 : adding our validator in the signupForm :
+// note that the 3rd argument is for async validators
+// no need for the bind(this) since we are not using the 'this' keyword in the validator
+'email' : new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmails)
+</pre>We can inspect the element and we see that when the async validator is called, we have the ng-pending class that is added.
+
+
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c69">
+<h3>Reactive - Custom validators</h3>
+<br>
+<pre>
+The built-in validators should cover most of the use-cases.
+For example, we could create a validator to check for forbidden user names.
+
+!!! A validator is successful when we return a null object, otherwise, the validator has failed. <!DOCTYPE html>
+
+<u>Code example in ts file:</u>
+<pre class='code'>
+// step 1 : create our invalid names :
+forbiddenUsernames = ['Chris','Anna'];
+
+// step 2 create the validator : 
+// example of return value :
+// return {'anna': true}
+forbiddenNames(control : FormControl) : { [s:string]: boolean }
+{
+  if ( this.forbiddenUsernames.includes(control.value) )
+    return {'nameIsForbidden' : true};
+  else
+    return null;
+}
+
+// step 3 : add our validator in the signupForm :
+// note the use of .bind(this) to make sure we bind it to our current class
+this.signupForm = new FormGroup(
+    {
+      'userData' : new FormGroup(
+        {
+            'username' : new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),  &lt;===
+            'email' : new FormControl(null, [Validators.required, Validators.email]),
+            'gender' : new FormControl('male', Validators.required)
+        }
+      ),
+      'hobbies' : new FormArray([])
+    }
+);
+</pre>The error code will be located in the selected control object, in the errors array.
+We can setup a custom error code with :
+<pre class='code'>
+*ngIf="signupForm.get('userData.username').errors['nameIsForbidden']"
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c68">
+<h3>Reactive - Adding controls dynamically</h3>
+<br>
+<pre>
+Example, in the HTML file :
+<pre class='code'>
+&lt;div formArrayName="hobbies"&gt;
+&lt;h4&gt;Your hobbies&lt;/h4&gt;
+&lt;button class="btn btn-submit" type="button" (click)="onAddHobby()"&gt;Add hobby&lt;/button&gt;
+&lt;div class="form-group" *ngFor="let hobbyControl of controls; let i = index"&gt;
+    &lt;input type="text" class="form-control" [formControlName]="i"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</pre>In the ts file :
+<pre class='code'>
+// signUpForm object :
+this.signupForm = new FormGroup(
+{
+    'userData' : new FormGroup(
+    {
+        'username' : new FormControl(null, Validators.required),
+        'email' : new FormControl(null, [Validators.required, Validators.email]),
+        'gender' : new FormControl('male', Validators.required)
+    }
+    ),
+    'hobbies' : new FormArray([])
+});
+
+// methods
+onAddHobby()
+{
+  const control = new FormControl(null, Validators.required);
+  (&lt;FormArray&gt; this.signupForm.get('hobbies')).push(control);
+}
+
+get controls() 
+{
+  return (this.signupForm.get('hobbies') as FormArray).controls;
+}
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c67">
+<h3>Grouping controls</h3>
+<br>
+<pre>
+We use nested formGroups in the ts file : 
+<pre class='code'>
+this.signupForm = new FormGroup(
+    {
+        'userData' : new FormGroup(
+            {
+            'username' : new FormControl(null, Validators.required),
+            'email' : new FormControl(null, [Validators.required, Validators.email]),
+            'gender' : new FormControl('male', Validators.required)
+            }
+        )
+    }
+);
+</pre>We need to nest our controls into a div (for example) with the formGroupName="userData" and change the paths in 
+the signupForm.get() method :
+<pre class='code'>
+    &lt;span *ngIf="!signupForm.get('userData.username').valid && signupForm.get('userData.username').touched"&gt;
+        Please enter a valid username !
+    &lt;/span&gt;
+    </pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c66">
+<h3>Reactive - Getting access to the controls</h3>
+<br>
+<pre>
+Where 'username' is the name of the control (formControlName) :
+<pre class='code'>
+&lt;span *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched"&gt;
+    Please enter a valid username !
+&lt;/span&gt;
+</pre>
+For the overall form :
+<pre class='code'>
+&lt;span *ngIf="!signupForm.valid && signupForm.touched"&gt;
+    Invalid fields !
+&lt;/span&gt;
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c65">
+<h3>Reactive - Adding Validation</h3>
+<br>
+<pre>
+No configuration is made in the HTML template, only controls. The 'required' keyword will not work.
+The validator configuration is set up in the FormControl() method, in the second argument :
+<pre class='code'>
+// Make sure the Validators module is imported :
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+// Add the validators :
+this.signupForm = new FormGroup(
+{
+    'username' : new FormControl(null,   Validators.required),
+    'email'    : new FormControl(null,  [Validators.required, Validators.email]),
+    'gender'   : new FormControl('male', Validators.required)
+});
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c64">
+<h3>Reactive - Creating the reactive form</h3>
+<br>
+<pre><u>Example :</u>
+<pre class='code'>
+this.signupForm = new FormGroup(
+{
+    'username' : new FormControl(null),
+    'email' : new FormControl(null),
+    'gender' : new FormControl('male')
+});
+</pre><u>Syncing the HTML and the form :</u>
+
+Inform Angular not to create a form when it sees the &lt;form&gt; tag but to sync it with the form created
+in the html file :
+<pre class='code'>
+&lt;form [formGroup]="signupForm"&gt;
+</pre>In each control of the HTML template, we add a formControlName :
+<pre class='code'>
+&lt;input
+type="text"
+id="username"
+formControlName="username"
+class="form-control"&gt;
+</pre><u>Submitting the form :</u>
+<pre class='code'>
+&lt;form [formGroup]="signupForm" (ngSubmit)="onSubmit()"&gt;
+</pre>No need to pass a local reference since we created the form in the code :
+<pre class='code'>
+onSubmit()
+{
+    console.log(this.signupForm);
+}
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c63">
+<h3>Reactive - Form setup</h3>
+<br>
+<pre>
+In the component ts file : 
+<pre class='code'>
+// imports :
+import { FormGroup, FormControl } from '@angular/forms';
+
+// variable that will hold our form :
+signupForm : FormGroup
+</pre>In the appModule.ts :
+<pre class='code'>
+// import reactive forms module :
+import { ReactiveFormsModule } from '@angular/forms';
+
+// add it in the ngModule imports array below :
+ReactiveFormsModule
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c62">
+<h3>TD Resetting the form</h3>
+<br>
+<pre>
+Reset a complete fresh form :
+<pre class='code'>
+this.myform.reset();
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c61">
+<h3>TD Setting and patching form values</h3>
+<br>
+<pre>
+We can set all js values in the form :
+<pre class='code'>
+this.referenceForm.setValue(form_object);
+</pre><u>Example :</u>
+<pre class='code'>
+this.myForm.setValue(
+{
+    username: suggestedName,
+    email : '',
+    secret : '',
+    gender: 'male'
+});
+</pre>But this is not the best way to do it if we already have values for some fields. We use then the patchValue() method 
+to overwrite specific fields :
+<pre class='code'>
+this.myForm.form.patchValue(
+{
+    username : suggestedName
+});
+</pre>Note that we are working on the .form ! 
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c60">
+<h3>TD Handling radio buttons</h3>
+<br>
+<pre>
+<pre class='code'>
+&lt;div class="radio" *ngFor="let gender of genders"&gt;
+&lt;label&gt;
+    &lt;input type="radio" name="gender" checked [(ngModel)]="selgender" [value]="gender"&gt;{{ gender }}
+&lt;/label&gt;
+&lt;/div&gt;
+</pre>With selgender = 'male' in the ts file. 
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c59">
+<h3>TD Grouping values</h3>
+<br>
+<pre>
+We want to group different values of a form into a single object. 
+We just need to select or create the div that groups the controls we want to group and add the property ngModelGroup and
+give it a name :
+<pre class='code'>
+&lt;div id="user-data" ngModelGroup="userData"&gt;
+</pre>We can add a reference to ngModelGroup to get access to the javacript object :
+<pre class='code'>
+&lt;div id="user-data" ngModelGroup="userData" #userData="ngModelGroup"&gt;
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+<!-- start note-->
+<div class="content" id="c58">
+<h3>TD Selecting</h3>
+<br>
+<pre>
+<pre class='code'>
+&lt;label for="secret"&gt;Secret Questions&lt;/label&gt;
+&lt;select id="secret" class="form-control" [ngModel]="$defaultQuestion" name="secret"&gt;
+    &lt;option value="pet"&gt;Your first Pet ?&lt;/option&gt;
+    &lt;option value="teacher"&gt;Your first teacher ?&lt;/option&gt;
+&lt;/select&gt;
+
+// with defaultQuestion = "pet" in the ts file.
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+<!-- start note-->
+<div class="content" id="c57">
+<h3>Template Driven Validation</h3>
+<br>
+<pre>
+We want to validate the user input.
+
+<a href="https://angular.io/api/forms/Validators" target="#">List of angular validators</a>
+
+<u>Check if the form is valid :</u>
+<pre class='code'>this.myForm.valid</pre><u>Check if email is valid :</u>
+
+Just add the email validator in the email input (last element in the following tag):
+<pre class='code'>
+&lt;input type="email" id="email" class="form-control" name="email" ngModel required email&gt;  
+</pre><u>About styling :</u>
+
+Angular adds classes to the controls that translates the state of the form : ng-dirty ng-touched ng-valid.
+They are toggled whenever input has been made (before submit).
+
+<u>Example :</u>
+<pre class='code'>
+&lt;input type="email" id="email" class="form-control" name="email" ngModel required email #mail="ngModel"&gt;
+&lt;p class="invalid" *ngIf="!mail.valid && mail.touched"&gt;Invalid email&lt;/p&gt;
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c56">
+<h3>Template driven forms</h3>
+<br>
+<pre>
+In a regular HTML form, we do not specify the post method. We don't want to send data directly to the server. We want 
+Angular to take care of it.
+
+<u>Setup :</u>
+
+Import the FormsModule in the appModule :
+<pre class='code'>
+import { FormsModule } from '@angular/forms';
+</pre>And in the NgModule imports array just below :
+<pre class='code'>
+    imports : [FormsModule,...]
+</pre>This will be sufficient for Angular to create a javascript representation of the form when he detects a &lt;form&gt; 
+element in the HTML template. But Angular do not automatically detect the INPUTs in that form. We need to register controls 
+manually. To do this, just add ngModel and its name in the selected controls :
+<pre class='code'>
+&lt;input type="text" name="username" ngModel&gt;
+</pre><u>Submitting and using the form :</u>
+
+We might think we want to put an event listener on a button with the type set to submit. But the default HTML behavior of that 
+button will be triggered.
+
+We will place our event listener in the opening form tag :
+<pre class='code'>
+&lt;form (ngSubmit)="onSubmit()"&gt; 
+</pre>To access to the generated javascript form :
+<pre class='code'>
+// in the HTML template :
+&lt;form (ngSubmit)="onSubmit(f)" #f="ngForm"&gt; 
+
+// in the ts :
+onSubmit(form : NgForm)
+{
+  console.log(form);
+}
+</pre>Our submitted information is located in the value object of the js version of the form :
+<pre class='code'>
+form.value.email 
+form.value.username 
+</pre><u>Using @ViewChild</u>
+
+In the ts file :
+<pre class='code'>
+@ViewChild('f') myForm : NgForm;
+
+onSubmit()
+{
+    console.log(myForm);
+}
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c55">
+<h3>Introduction to forms</h3>
+<br>
+<pre>
+We will create a JSON representation of our form in the ts file with key-value pairs and some metadata.
+
+We have two approaches :
+_ Template-Driven (TD) approach : Angular infers the form object from the DOM.
+_ Reactive : The form is created programmatically and synchronized with the DOM. This gives more control and fine tune the form.
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c54">
+<h3>Subjects</h3>
+<br>
+<pre>
+A subject is an "active" observer as we can trigger the return event from code, where as we have to wait for the response 
+of a regular observable (passive). It works basically the same as an event emitter.
+<pre class='code'>
+import { Subject } from 'rxjs';
+
+// code in the user.service.ts :
+activatedEmitter = new Subject&lt;ValueType&gt;()
+
+// Calling the subject to trigger a change :
+this.userService.activatedEmitter.next(value_to_change);
+
+// Receiving the data :
+this.userService.activateEmitter.suscribe( (data) => { myCode });
+</pre>!!! Do not use EventEmitter for direct 'in code' changes between components !!!
+
+You need to destroy the subject when exiting the component with :
+<pre class='code'>
+this.userService.unsuscribe();
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c53">
+<h3>Operators</h3>
+<br>
+<pre>
+Operators are the magic features of the rxjs library : right before the data arrives to the observers, operators
+process the data. There are a ton of available operators.
+
+You call an operator with the pipe() method :
+<pre class='code'>
+import { operatorName (ex: map) } from 'rxjs/operators';
+
+myObservable.pipe(map((data)=>{return doSomething})).suscribe((data)=>{do something})    
+</pre>The pipe() method takes an unlimited amount of arguments. 
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c52">
+<h3>Creating a custom observable</h3>
+<br>
+<pre>
+First, import the Observable package from rxjs :
+<pre class='code'>
+import { Observable } from 'rxjs';
+</pre>Create an observable :
+<pre class='code'>
+const customObs = Observable.create(
+    (observer)=>
+    {
+        // 3 possible functions we can use :
+        observer.next(count);                       // next emitted value, for example data
+        observer.error(new Error(message));         // throw an error
+        observer.complete();                        // observable is finished
+    }
+);
+</pre>Suscribe to the observable :
+<pre class='code'>
+customObs.suscribe((data)=>{ your code }, (error)=>{ your code }, ()=>{ obs completed });
+</pre>!!! An error cancels the observable, it never completes !!!
+
+You very very rarely create your own observables.
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c51">
+<h3>Using a built-in observable</h3>
+<br>
+<pre>
+The rxjs package gives us different ways to create a new observable. One of the easiest way is to use "interval", a built-in 
+function :
+<pre class='code'>
+import { interval } from rxjs;
+</pre>It will fire an event every x milliseconds :
+<pre class='code'>
+this.ObsInterval = interval(1000).suscribe( count =>
+{
+    console.log(count);
+})
+</pre>Some observable keep on going (like interval), other just emit an event and are done (like http request). It is very
+important to manage the observable when we quit the component to avoid memory leak. We can use the ngOnDestroy hook for example :
+<pre class='code'>
+this.ObsInterval.unsuscribe();
+</pre>Angular will take care of cleaning all observables that are built-in.
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c50">
+<h3>Introduction</h3>
+<br>
+<pre>
+An observable can be seen a data source : user input, HTTP requests, database access ...
+We have an observable and an observer (your code). In between, we have a stream (a timeline) where we can have multiple events
+emitted by the observable.
+We receive three ways of handling data packages :
+_ Handle Data 
+_ Handle Error 
+_ Handle Completion
+
+An observable might never complete.
+
+
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c49">
+<h3>Passing dynamic data</h3>
+<br>
+<pre>
+We will use a resolver that will execute some code before rendering/displaying the component.
+We need to create a service which implements the Resolve interface.
+<pre class='code'>
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router'
+
+interface Server
+{
+    id:number;
+    name:string;
+    status:string;
+}
+
+export class ServerResolver implements Resolve&lt;Server&gt;
+{
+    resolve(route:ActivatedRouteSnapshot, state: RouterStateSnapshot)
+    : Observable&lt;Server&gt; | Promise&lt;Server&gt; | Server
+    {
+        return this.serverService.getServer(+route.params['id']);
+    }
+}
+</pre>We need to add it to the service provider in AppModule.ts and use it in the router paths :
+<pre class='code'>
+{ path : 'users/:id/:name',component:UserComponent, resolve:{server:ServerResolver}},
+</pre>We can access the data with the 'data' baggage :
+<pre class='code'>
+this.route.data.suscribe(
+    (data : Data ) =>
+    {
+        // this is the name of the object used in the resolver just above :
+        // resolve:{server : ServerResolver}
+        this.server = data['server'];
+    }
+)
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c48">
+<h3>Passing static data to a route</h3>
+<br>
+<pre>
+In the list of routing paths :
+<pre class='code'>
+{ path: 'not-found' , component : ErrorPageComponent, data : {message:'Page not found'}}
+</pre>To access the data in the component :
+<pre class='code'>
+constructor(private route:ActivatedRoute){}
+
+ngOnInit()
+{
+    this.errorMessage = this.route.snapshot.data['message'];
+    // or
+    this.route.data.subscribe
+    (
+        (data: Data) => 
+        {
+            this.errorMessage = data['message'];
+        }
+    );
+}</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c47">
+<h3>CanDeactivate Guard</h3>
+<br>
+<pre>
+We can use this to prevent the user to accidentally change components.
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c46">
+<h3>CanActivate Guard</h3>
+<br>
+<pre>
+We want to run some code before some component is loaded. For example, to check if a user has access to this component.
+
+<u>CanActivate</u>
+
+This method will be called by Angular before a route is loaded.
+
+CanActivate can return both asynchronously (observable or promise) or synchronously.
+<pre class='code'>
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
+import { Observable } from "rxjs";
+
+export class AuthGuard implements CanActivate
+{
+
+    canActivate( route:ActivatedRouteSnapshot, state: RouterStateSnapshot)
+                : Observable<boolean> | Promise<boolean> | boolean 
+    {
+
+    }
+
+}
+</pre><u>Full example :</u>
+
+We create here a AuthGuard Service :
+<pre class='code'>
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
+import { Observable } from "rxjs";
+import { Injectable } from "@angular/core";
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
+
+@Injectable()
+export class AuthGuard implements CanActivate
+{
+    constructor(private authService : AuthService, private router: Router){};
+
+
+    canActivate( route:ActivatedRouteSnapshot, state: RouterStateSnapshot)
+                : Observable<boolean> | Promise<boolean> | boolean 
+    {
+        return this.authService.isAuthenticated().then(
+            (authenticated : boolean) =>
+            {
+                if (authenticated)
+                {
+                    console.log("logged in");
+                    return true;
+                }
+                else
+                {
+                    console.log("not logged in");
+                    this.router.navigate(['/']);
+                }
+            }
+        );
+    }
+}
+</pre>In the app-routing.module.ts, we select the routes that need the AuthGuard service :
+<pre class='code'>
+const appRoutes: Routes = 
+[
+    { path : '',                      component: HomeComponent    },			
+    { path : 'users',                 component: UsersComponent   },
+    { path : 'users/:id/:name',       component:UserComponent     },
+    { path : 'servers',               canActivate:[AuthGuard],    &lt;=====   
+                                      component: ServersComponent , 
+                                      children : 
+                                        [
+                                            { path : ':id',         component : ServerComponent },
+                                            { path : ':id/edit',    component : EditServerComponent }
+                                        ]},
+];  
+</pre>Then, in the appModule.ts, we need to add the services to the providers, without forgetting the imports :
+<pre class='code'>
+providers: [ServersService, AuthService, AuthGuard],
+</pre><u>Protecting child routes :</u>
+We can use the method CanActivateChild, which has the same form as CanActivate. Thus, we can just call the CanActivate method
+inside CanActivateChild.
+
+We can protect either all the routes (parent and child), or just a parent or the children.
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+<!-- start note-->
+<div class="content" id="c45">
+<h3>Outsourcing the route configuration</h3>
+<br>
+<pre>
+If we have more than 2 or 3 routes, we don't add them in the appModule but in a file called app-routing.module.ts :
+<pre class='code'>
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+// add all the corresponding imports
+
+
+const appRoutes: Routes = 
+[
+  { path : '',                      component: HomeComponent    },			
+  { path : 'users',                 component: UsersComponent   },
+  { path : 'users/:id/:name',       component:UserComponent     },
+  { path : 'servers',               component: ServersComponent , children : 
+  [
+      { path : ':id',               component : ServerComponent },
+      { path : ':id/edit',          component : EditServerComponent }
+  ]},
+];  
+
+@NgModule({
+    imports: [RouterModule.forRoot(appRoutes)],
+    exports: [RouterModule]
+})
+export class AppRoutingModule
+{
+ 
+}
+</pre>Don't forget to import this module in the appModule.ts and in the NgModule imports list of that same file :
+<pre class='code'>
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+import { AppRoutingModule } from './app-routing.module';      &lt;=====
+
+
+@NgModule({
+    declarations: 
+    [
+        AppComponent,
+        HomeComponent,
+        UsersComponent,
+        ServersComponent,
+        UserComponent,
+        EditServerComponent,
+        ServerComponent 
+    ],
+    imports: 
+    [
+        BrowserModule,
+        FormsModule,
+        AppRoutingModule   &lt;====
+    ],
+    providers: [ServersService],
+    bootstrap: [AppComponent]
+})
+export class AppModule { }
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c44">
+<h3>Redirection and wildcard routes</h3>
+<br>
+<pre>
+<u>Redirection :</u>
+
+We use the redirectTo property in the appModule list of paths :
+<pre class='code'>
+const appRoutes: Routes = 
+[
+    { path : 'not-found',   component: PageNotFoundComponent    },			
+    { path : 'something',   redirectTo: '/not-found'            }
+];
+</pre><u>wildcard routes :</u>
+<pre class='code'>
+const appRoutes: Routes = 
+[
+    { path : 'not-found',   component: PageNotFoundComponent    },			
+    { path : '**',   redirectTo: '/not-found'            }
+];
+</pre>** means catch all routes we don't know. <b>This generic route must be the last one in the list.</b>
+
+<u>Important: Redirection Path Matching</u>
+
+In our example, we didn't encounter any issues when we tried to redirect the user. But that's not always the case when 
+adding redirections.
+By default, Angular matches paths by prefix. That means, that the following route will match both /recipes and just / : 
+<pre class='code'>
+{ path: '', redirectTo: '/somewhere-else' } 
+</pre>Actually, Angular will give you an error here, because that's a common gotcha: This route will now ALWAYS redirect you! Why?
+Since the default matching strategy is "prefix" , Angular checks if the path you entered in the URL does start with the 
+path specified in the route. Of course every path starts with ''  (Important: That's no whitespace, it's simply "nothing").
+To fix this behavior, you need to change the matching strategy to "full" :
+<pre class='code'>
+{ path: '', redirectTo: '/somewhere-else', pathMatch: 'full' } 
+</pre>Now, you only get redirected, if the full path is ''  (so only if you got NO other content in your path in this example).
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c43">
+<h3>Preserving the query parameters</h3>
+<br>
+<pre>
+<pre class='code'>
+this.router.navigate(['edit'], {relativeTo:this.route, queryParamsHandling: 'merge'});  
+</pre>* <b>merge</b> will merge the old query params with the new ones. 
+* <b>preserve</b> will keep the old ones.
+* <b>drop</b> will drop the old ones, default behavior.
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c42">
+<h3>Nested routes</h3>
+<br>
+<pre>
+When we clink a link, we will be forwarded to a new page. We now want to stay on the same page : we use nested Routing.
+In the app module, in the list of routes, we add a property called children :
+<pre class='code'>
+const appRoutes: Routes = 
+[
+    { path : '',                    component: HomeComponent    },			
+    { path : 'users',  	            component: UsersComponent   },
+    { path : 'users/:id/:name',     component:UserComponent     },
+    { path : 'servers',             component: ServersComponent , children : 
+    [
+        { path : ':id',             component : ServerComponent },
+        { path : ':id/edit',        component : EditServerComponent }
+    ]},
+];
+</pre>And in the HTML template, we must use router-outlet to load these children routes in :
+<pre class='code'>
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c41">
+<h3>Query parameters and fragments</h3>
+<br>
+<pre>
+Query parameters are parameters separated by a question mark :
+<pre class='code'>
+localhost:4200\users\add?name=anna&id=5#display
+</pre> Note : the fragment hashtag # means we jump to a specific place in the HTML.
+
+In the HTML, along with routerLink, we add a new property of the routerLink directive called queryParams (it's a bind property):
+<pre class='code'>
+&lt;a [routerLink]="['/servers',5, 'edit']" [queryParams]="{allowEdit: '1'}" fragment="loading"&gt;
+</pre>When we click on the link, we will get the following url : http://localhost:4200/servers/5/edit?allowEdit=1#loading
+
+Doing the same programmatically in a button :
+<pre class='code'>
+    this.router.navigate(['/servers', id, 'edit'],{queryParams:{allowedit:'1'}, fragment:'loading'});
+</pre>And we get the same url : http://localhost:4200/servers/1/edit?allowedit=1#loading
+
+To access the query parameters in the given component, we need to load ActivatedRoute and use :
+<pre class='code'>
+    this.route.snapshot.queryParams
+    this.route.snapshot.fragment
+</pre>This will only be retrieved when the component is created, not updated.
+
+To retrieve when updated :
+<pre class='code'>
+this.route.queryParams.suscribe()
+this.route.fragment.suscribe()
+</pre>
+
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c40">
+<h3>Route parameters</h3>
+<br>
+<pre>
+We can add parameters in the route paths with the "/:param" syntax :
+<pre class='code'>
+const appRoutes: Routes = 
+[
+    { path : '',                  component: HomeComponent    },			
+    { path : 'users',  	          component: UsersComponent   },
+    { path : 'user/:id/:name',    component: UserComponent     },  <== pass a parameter
+    { path : 'servers',           component: ServersComponent }
+]; 
+</pre>To retrieve the parameters, we need to use ActivatedRoute :
+<pre class='code'>
+import { ActivatedRoute } from '@angular/router';
+
+user: {id:number, name:string};
+
+constructor(private route:ActivatedRoute){}
+
+ngOnInit() 
+{
+  this.user = 
+  {
+    id: this.route.snapshot.params['id'],
+    name: this.route.snapshot.params['name']
+  }
+}
+</pre>We can test this in the url with the following syntax :
+<pre class='code'>
+localhost:4200/users/1/claude
+</pre><u>Using routerLink in the HTML to call the URL programmatically :</u>
+<pre class='code'>
+&lt;a [routerLink]="['/users', 1, 'claude']"&gt;
+</pre>We have an issue with this because if we're already on that component, the component and the data will not be updated.
+It's fine to use "snapshot" for the first initialization but for subsequent changes, we need a different approach.
+
+<u>Fetching route parameters reactively</u>
+
+We have this.route.params which is an observable. Observables are a feature from a 3rd party package (not from Angular),
+that lets us work with asynchronous tasks.
+An observable is an easy way to suscribe to an event that might happen in the future, and execute some code when it happens 
+without having to wait for it now. 
+This.route.params.suscribe() has 3 function parameters that we can pass. The first one is the most important :
+The first function is executed when new data is fired by the observable:
+<pre class='code'>
+import { ActivatedRoute, Params } from '@angular/router';
+
+this.route.params.subscribe(
+    (params : Params) => 
+    {
+        this.user.id = params['id'];
+        this.user.name = params['name'];
+    }
+);</pre>Angular does cleanup of the observable when the component is destroyed. Theoretically, you might want to implement
+the onDestroy lifecycle (especially when working with your own observables) :
+<pre class='code'>
+// imports
+import { Subscription } from 'rxjs/Subscription';
+
+// constructor
+paramsSubscription: Subscription;
+
+// core code
+this.subscription = this.route.params.subscribe(
+    (params : Params) => 
+    {
+        this.user.id = params['id'];
+        this.user.name = params['name'];
+    }
+);
+
+// kill subscription
+ngOnDestroy()
+{
+    this.subscription.unsubscribe();
+}
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c39">
+<h3>Navigating programmatically</h3>
+<br>
+<pre>
+
+For instance, on a click on a button, we want to go to another route.
+
+1. We need to use the Router class :
+<pre class='code'>
+import { Router } from '@angular/router';
+</pre>2. We inject it through the constructor : 
+<pre class='code'>
+constructor(private router: Router) {}
+</pre>3. Navigate to given route :
+<pre class='code'>
+this.router.navigate(['/path']) 
+</pre>Unlike the RouterLink, the "navigate" method doesnt know on which route we're currently on. So if we specify a 
+relative path, no error will be thrown. We will need to specify a second argument setting.
+
+<u>Complete example :</u>
+<pre class='code'>
+import { Component, OnInit } from '@angular/core';
+import { ServersService } from './servers.service';
+
+===> ActivatedRoute lets us retrieve the current active route
+import { Router, ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-servers',
+  templateUrl: './servers.component.html',
+  styleUrls: ['./servers.component.css']
+})
+export class ServersComponent implements OnInit {
+  public servers: {id: number, name: string, status: string}[] = [];
+
+  constructor(private serversService: ServersService, 
+              private router: Router,
+              private route : ActivatedRoute)   <== inject the ActivatedRoute dependency
+              { }
+
+  onReload()
+  {
+    ===>  retrieve the current active route
+    this.router.navigate(['servers'], {relativeTo:this.route}); 
+  }
+}</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c38">
+<h3>Styling active router links</h3>
+<br>
+<pre>
+We have a directive for this :
+<pre class='code'>
+routerLinkActive "class_name"
+</pre>More about <a href="https://angular.io/api/router/RouterLinkActive" target="#">routerLinkActive</a>.
+
+When the link route becomes active, the CSS class becomes active.
+
+The / router link is always active so we need to add some configuration to disable it when going
+to another link route :
+<pre class='code'>
+[routerLinkActiveOptions]="{exact:true}"
+</pre></pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c37">
+<h3>Router links</h3>
+<br>
+<pre>
+If we put links like : 
+<pre class='code'>
+&lt;a href="/users"&gt;Users&lt;/a&gt;
+</pre>it reloads the app and all the application state is lost.
+
+We need to use a special directive called routerLink :
+<pre class='code'>
+&lt;a routerLink="/users"&gt;Users&lt;/a&gt;
+</pre>Alternate notation for the directive that lets us create more complex path more easily :
+<pre class='code'>
+[routerLink]="['/users']"
+</pre><u>Navigation paths</u>
+
+Router links with / are absolute paths. 
+Router links without are relative paths, depending then on the component you are in.
+You can use ./ and ../ notations. 
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c36">
+<h3>Creating routes</h3>
+<br>
+<pre>
+The routes are responsible for our whole app.
+=> they will be registered in appModule.
+
+1. Import the Routes and RouterModule :
+<pre class='code'>
+import { Routes, RouterModule } from '@angular/router';
+</pre>2. Create an array with the routes in the form : url, action
+<pre class='code'>
+    // 'users' corresponds to localhost/users
+    // no / for the root path
+    const appRoutes: Routes = 
+    [
+        { path : '',  	 	component: HomeComponent },			
+        { path : 'users',  	component: UsersComponent },	
+        { path : 'servers', component: ServersComponent }
+    ];
+</pre>3. Add RouterModule with the to the list of routes defined in appRoutes in the imports :
+<pre class='code'>
+    RouterModule.forRoot(appRoutes)
+</pre>4. Select the place in the html to render the routes and add the followwing directive :
+<pre class='code'>
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+</pre>    
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- TEMPLATE NOTE-->
+<!-- start note-->
+<div class="content" id="c35">
+<h3>New way to provide services</h3>
+<br>
+<pre>
+If you're using Angular 6+, you can provide application-wide services in a different way.
+
+Instead of adding a service class to the providers[]  array in AppModule , you can set the following config in @Injectable() :
+<pre class='code'>
+    @Injectable({providedIn: 'root'})
+    export class MyService { ... }
+</pre>This is exactly the same as:
+<pre class='code'>
+    export class MyService { ... }
+</pre>and
+<pre class='code'>
+    import { MyService } from './path/to/my.service';
+        
+    @NgModule({
+        ...
+        providers: [MyService]
+    })
+    export class AppModule { ... }
+</pre>Using this new syntax is completely optional, the traditional syntax (using providers[] ) will still work. The "new syntax" does 
+offer one advantage though: Services can be loaded lazily by Angular (behind the scenes) and redundant code can be removed 
+automatically. This can lead to a better performance and loading speed - though this really only kicks in for bigger services 
+and apps in general.
+</pre>
+</div>
+<!-- end note --><!-- TEMPLATE NOTE-->
+    
+
+    
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c34">
+<h3>Using services for cross-component communication</h3>
+<br>
+<pre>
+No more need to create complex input/output chains of data. 
+
+Lets say we want to provide some event which we can trigger in one component and listen to in another. 
+
+1. Create the event emitter in the service :
+<pre class='code'>
+    statusUpdated = new EventEmitter<string>();
+</pre>2. In the first component where we update the data : 
+<pre class='code'>
+    this.accountsService.statusUpdated.emit(status);
+</pre>3. In the second component, in the constructor block, where we are being notified of the change : 
+<pre class='code'>
+    this.accountsService.statusUpdated.suscribe( (status:string) => {process the data} );
+</pre>    
+</pre>
+</div>
+<!-- end note -->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- TEMPLATE NOTE-->
+<!-- start note-->
+<div class="content" id="c33">
+<h3>Injecting services into services</h3>
+<br>
+<pre>
+1. Import the extra service
+2. Declare the constructor
+3. Define the receiving service class as @Injectable (imported from angular/core)
+
+Note : create all service with the Injectable decorator for future legacy problems.   
+</pre>
+</div>
+<!-- end note --><!-- TEMPLATE NOTE-->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- TEMPLATE NOTE-->
+<!-- start note-->
+<div class="content" id="c32">
+<h3>Understanding the hierarchical Injector</h3>
+<br>
+<pre>
+The Angular dependency injector is actually a hierarchical injector : if we provide a service in some place of our app, 
+lets say a component, then angular knows how to create an instance of this service for that component and all of its childs. 
+They will all receive the same instance of that service.  
+The highest level is the AppModule : the service is available application-wide : all components and services (services 
+that use services).
+Then we have AppComponent : Same instance of the service is available for all components, but not for other services.
+Lowest level : component without children. This will overwrite the instance of the service if its defined on a higher level.
+
+!!!!  To use an existing service, just don't provide it in the providers. !!!!
+
+We still need to use the constructor and the import.   
+</pre>
+</div>
+<!-- end note --><!-- TEMPLATE NOTE-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c31">
+<h3>Dependency injection</h3>
+<br>
+<pre>
+A dependency is something a class of ours will depend on. 
+Ex : the new account component depends on the loggingService because we want to call a method in that service. 
+
+The dependency injector simply injects this dependency, ie injects an instance of this class into our component automatically.
+
+All we need to do is inform Angular that we require such an instance by adding a constructor in the component that requires 
+the service :
+<pre class='code'>
+    constructor(private loggingService: LoggingService){}
+</pre>Angular will understand that we want a new instance of the class. We need an additionnal step to tell Angular how to create it :
+
+We just need to create a property to the component decorator : the providers property : 
+<pre class='code'>
+@Component({
+    selector: 'app-new-account',
+    templateUrl: './new-account.component.html',
+    styleUrls: ['./new-account.component.css'],
+    providers : [LoggingService]  <===
+})
+</pre>To use the service, we just need to use : 
+<pre class='code'>
+this.loggingService.logStatusChange(accountStatus);
+</pre><u>Recap</u>
+
+1. Import the service
+2. Add to the providers (to create a new service instance)
+3. Add the constructor property
+4. Use the service
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c30">
+<h3>Creating a service</h3>
+<br>
+<pre>
+<u>What are services ?</u>
+
+Duplicate code and data access are typical use cases for a service.
+A service is another class you can add to act as a central repository. 
+A service can be really helpful fro communication between components.
+
+<u>Creating a new service</u>
+
+1. Choose a fitting place : for example app/shared
+
+2. Naming convention serviceName.service.ts
+
+3. A service is just a normal typescript class :
+<pre class='code'>
+export class LoggingService
+{
+    logStatusChange(status:string)
+    {
+        console.log('A server status changed, new status: ' + status);
+    }
+}
+</pre>4. <b>How not to use a service in Angular :</b>
+<pre class='code'>
+    const service = new LoggingService();
+    service.logStatus(accountStatus);
+</pre>Angular provides a much better way of getting access to your services : Angular dependency injector.
+Lets remove the instanciation and more information in the next note.
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c29">
+<h3>ngSwitch</h3>
+<br>
+<pre>
+It is a switch condition. There is a property called "value" in the component.ts.
+
+<u>Example in the component.html :</u>
+<pre class='code'>
+&lt;div [ngSwitch]="value"&gt;
+    &lt;p *ngSwitchCase="5"&gt;Value is 5&lt;/p&gt;
+    &lt;p *ngSwitchCase="10"&gt;Value is 10&lt;/p&gt;
+    &lt;p *ngSwitchCase="15"&gt;Value is 15&lt;/p&gt;
+    &lt;p *ngSwitchDefault&gt;Value is default&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+<!-- start note-->
+<div class="content" id="c28">
+<h3>Creating structural properties</h3>
+<br>
+<pre>
+Structural directives have a star as a prefix : *ngIf
+
+Behind the scenes, angular will transform them into :
+<pre class='code'>
+&lt;ng-template [ngIf]="condition"&gt;
+    &lt;!-- my html code here --&gt;
+&lt;/ng-template&gt;
+</pre>ng-Template is not rendered, it is just a template for Angular to use when the condition is true.
+
+<u>Building a structural directive</u>
+
+We will create here a directive that is opposite to ngIf : unless
+
+Creating the directive with the CLI :
+<pre class='code'>
+    &gt; ng g d unless
+</pre><u>Complete example :</u>
+
+    * In the directive.ts :
+<pre class='code'>
+import { Directive , Input , TemplateRef, ViewContainerRef} from '@angular/core';
+
+@Directive({
+    selector: '[appUnless]'
+})
+export class UnlessDirective 
+{
+    // set keyword : execute a method
+    // technically this is still a property
+    // this is a setter of the property
+    // that is executed whenever the property changes
+    // The property name must match exactly the selector
+    @Input() set appUnless(condition : boolean)
+    {
+        if(!condition)
+        {
+            this.vcRef.createEmbeddedView(this.templateRef);
+        }
+        else
+        {
+            this.vcRef.clear()
+        }
+    }
+
+    // arg1 :  gives us access to the template ng-template, 
+    // arg2 :  gives us the position in the DOM to render
+    constructor(private templateRef: TemplateRef<any>, private vcRef:ViewContainerRef){ }
+}
+</pre>  * In the component.html :
+<pre class='code'>
+&lt;div *appUnless="true"&gt;
+    &lt;p&gt;Hello world !&lt;/p&gt;
+&lt;/div&gt;
+</pre>        
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+<!-- start note-->
+<div class="content" id="c27">
+<h3>Binding to directive properties</h3>
+<br>
+<pre>
+We want to be able which color we want to use. For instance, if we want to create a 3rd party package 
+and the developper choose which color to use.
+
+=> We use property binding 
+
+<u>Full example :</u> 
+
+    * In the directive.ts :
+<pre class='code'>
+import { Directive, ElementRef, HostListener, HostBinding, Input, OnInit } from '@angular/core';
+
+@Directive({
+    selector: '[appBetterHighlight]'
+})
+export class BetterHighlightDirective implements OnInit
+{
+    constructor(private elRef: ElementRef) {}
+
+    ngOnInit(): void 
+    {
+        this.backgroundColor = this.defaultColor;
+    }
+
+    @Input() defaultColor : string = "transparent";
+    @Input() highlightColor : string = "green";
+
+    @HostBinding('style.backgroundColor') backgroundColor : string = this.highlightColor;
+    @HostBinding('style.cursor') cursor : string = this.defaultColor;
+
+    @HostListener('mouseenter') mouseover(eventData: Event)
+    {
+        this.backgroundColor = this.highlightColor;
+        this.cursor="pointer";
+    } 
+
+    @HostListener('mouseleave') mouseleave(eventData: Event)
+    {
+        this.backgroundColor = this.defaultColor;
+    } 
+}
+</pre>* In the component.html :
+<pre class='code'>
+&lt;p appBetterHighlight [defaultColor]="'transparent'" [highlightColor]="'red'"&gt;Some random text...&lt;/p&gt;
+</pre>!!! Note the color value is in between single-quotes too !!! 
+
+=> In that case, the syntax  can be reduced to :
+<pre class='code'>
+[defaultColor]="'transparent'"  => defaultColor = "transparent"
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c26">
+<h3>HostBinding</h3>
+<br>
+<pre>
+There is a another decorator that we can use that doesn't need the renderer.
+It's an easier way if we just want to change the background color. 
+
+=> HostBinding
+
+We need to bind this to some property which value will become important :
+<pre class='code'>
+@HostBinding('style.backgroundColor') backgroundColor : string;
+</pre>The we just need to modify its value : 
+<pre class='code'>
+this.backgroundColor ='yellow';
+</pre><u>Full example :</u>
+<pre class='code'>
+import { Directive, ElementRef, HostListener, HostBinding } from '@angular/core';
+
+@Directive({
+    selector: '[appBetterHighlight]'
+})
+export class BetterHighlightDirective
+{
+    constructor(private elRef: ElementRef) {}
+
+    @HostBinding('style.backgroundColor') backgroundColor : string;
+    @HostBinding('style.cursor') cursor : string;
+
+    @HostListener('mouseenter') mouseover(eventData: Event)
+    {
+        this.backgroundColor ='yellow';
+        this.cursor="pointer";
+    } 
+
+    @HostListener('mouseleave') mouseleave(eventData: Event)
+    {
+        this.backgroundColor ='green';
+    } 
+}
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c25">
+    <h3>Using HostListener to listen to host events</h3>
+<br>
+<pre>
+<u>Documentation : </u>
+
+<a href="https://angular.io/api/core/HostListener" target="#">HostListener</a>
+<a href="https://www.w3schools.com/jsref/dom_obj_event.asp" target="#">List of DOM events</a>
+
+We want to make the directive dynamic, for instance, to highlight on a hover :
+
+<u>Full Example in a directive.ts :</u>
+<pre class='code'>
+import { Directive, Renderer2, ElementRef, HostListener } from '@angular/core';
+
+@Directive({
+    selector: '[appBetterHighlight]'
+})
+export class BetterHighlightDirective implements OnInit 
+{
+    constructor(private elRef: ElementRef, private renderer : Renderer2) {}
+
+    @HostListener('mouseenter') mouseover(eventData: Event)
+    {
+        this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue');
+        this.renderer.setStyle(this.elRef.nativeElement, 'cursor', 'pointer');
+    } 
+
+    @HostListener('mouseleave') mouseleave(eventData: Event)
+    {
+        this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'transparent');
+    } 
+}
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c24">
+<h3>Using the renderer</h3>
+<br>
+<pre>
+Changing the style by accessing the style directly in the directive is not the best way to go.
+We should not access the DOM directly. Angular is capable to render the templates without a DOM 
+because it might not run in a browser.
+
+=> We need to use the Renderer2 object. 
+
+<u>Full example in the directive.ts :</u>
+
+<pre class='code'>
+import { Directive, Renderer2, OnInit, ElementRef } from '@angular/core';
+
+@Directive({
+    selector: '[appBetterHighlight]'
+})
+export class BetterHighlightDirective implements OnInit 
+{
+    // elRef is a reference to the object we want to style
+    constructor(private elRef: ElementRef, private renderer : Renderer2) {}
+
+    ngOnInit() 
+    {
+        // using the renderer
+        this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue');
+    }
+}
+</pre><a href="https://angular.io/api/core/Renderer2" target="#">List of Renderer2 methods here.</a>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c23">
+<h3>Accessing ng-content with <a href="https://angular.io/api/core/ContentChild" target="#">ContentChild</a></h3>
+<br>
+<pre>
+So we project some html template inside the child component brackets and we have a local reference in there. 
+We want to access it in the child component. 
+
+ViewChild will not work because it is not part of the view but part of the content that is sent from the parent component.
+
+We can use @ContentChild (needs to be imported).
+<pre class='code'>
+@ContentChild('contentParagraph', {static: true}) paragraph: ElementRef;
+</pre><u>Note :</u> 
+
+In Angular 8+, the @ContentChild() syntax which you'll see in the next lecture needs to be changed slightly:
+
+Instead of:
+<pre class='code'>
+    @ContentChild('contentParagraph') paragraph: ElementRef;
+</pre>use
+<pre class='code'>
+    @ContentChild('contentParagraph', {static: true}) paragraph: ElementRef;
+</pre>The same change (add { static: true } as a second argument) needs to be applied to ALL usages of @ContentChild(). 
+if you use the selected element inside of ngOnInit (as we do it in the lectures).
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c22">
+<h3>Projecting content with ng-content</h3>
+<br>
+<pre>
+We want to inject html code into the component from the parent between the child-component tags. All the html code between the 
+opening and closing brackets of a component is lost. It is removed by default by angular.
+
+It is possible to change this by adding in the child component :
+<pre class='code'>
+    &lt;ng-content&gt;&lt;/ng-content&gt;
+</pre>
+</pre>
+</div>
+<!-- end note -->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- TEMPLATE NOTE-->
+<!-- start note-->
+<div class="content" id="c21">
+<h3>The component lifecycle</h3>
+<br>
+<pre>
+Once a component is initiated, angular goes through different phases in the creation process.
+We can hook into theses changes by implementing some methods.
+
+In order :
+
+<u>ngOnChanges</u>             
+
+    May be executed multiple times. Called whenever a bound input property changes (properties decorated with @Input).
+
+<u>ngOnInit</u> 			    
+
+    Called once the component is initialized. Not displayed it. The object was created. It is executed after the constructor.
+
+<u>ngDoCheck</u>			    
+
+    Called during every change detection run (thats the process of figuring if something changed in the component and if the 
+    display must be updated)
+
+<u>ngAfterContentInit</u>      
+
+    Called after content (ng-content) has been projected into the view.
+
+<u>ngAfterContentChecked</u>   
+
+    Called every time the projected content has been checked.
+
+<u>ngAfterViewInit</u> 	    
+
+    Called after the components view and child views have been initialized. We can now access our local references then.
+
+<u>ngAfterViewChecked</u>      
+
+    Called every time the view and child views have been checked.
+
+<u>ngOnDestroy</u> 		    
+
+    Called once the component is about to be destroyed. Cleanup works.
+
+<u>How to use : </u>
+
+We need to specify in the <b>component decorator</b> which hooks we want to use :
+<pre class='code'>
+ngOnChanges => OnChanges
+</pre>Just remove the "ng" prefix for all the other hooks.
+
+Add the implement reference of the hook :
+<pre class='code'>
+export class ServerElementComponent implements onInit, OnChanges ...
+</pre>And also add them in the imports.
+
+The only hook that has arguments is ngOnChanges :
+<pre class='code'>
+ngOnChanges(changes : SimpleChanges)
+{
+    console.log();
+}
+</pre>We also need to also import SimpleChanges in that case.
+    
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+<!-- TEMPLATE NOTE-->
+<!-- start note-->
+<div class="content" id="c20">
+<h3>ViewChild</h3>
+<br>
+<pre>
+<u>Note : Getting access to the template and DOM with @ViewChild </u> 
+
+In Angular 8+, the @ViewChild() syntax which you'll see in the next lecture needs to be changed slightly:
+
+Instead of:
+<pre class='code'>
+@ViewChild('serverContentInput') serverContentInput: ElementRef;
+</pre>use
+<pre class='code'>
+@ViewChild('serverContentInput', {static: true}) serverContentInput: ElementRef;
+</pre>The same change (add { static: true } as a second argument) needs to be applied to ALL usages of @ViewChild() (and 
+also @ContentChild() which you'll learn about later) IF you plan on accessing the selected element inside of ngOnInit().
+
+If you DON'T access the selected element in ngOnInit (but anywhere else in your component), set static: false instead!
+
+If you're using Angular 9, you only need to add { static: true } (if needed) but not { static: false }.
+
+<u>Back to the course :</u> 
+
+We want to access the local reference whenever we want in the ts code.
+We use ViewChild for this :
+
+Property decorator that configures a view query. The change detector looks for the first element or the directive matching the 
+selector in the view DOM. If the view DOM changes, and a new child matches the selector, the property is updated.
+
+We assign a ViewChild decorator to our serverContentInput reference :
+<pre class='code'>
+@ViewChild('serverContentInput', {static: true}) serverContentInput : ElementRef;
+</pre>ViewChild is of type ElementRef (angular type).
+
+To access the variable : 
+<pre class='code'>
+this.serverContentInput.nativeElement.value
+</pre>Do not modify directly the value of the variable such as : 
+<pre class='code'>
+this.serverContentInput.nativeElement.value = "something"
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+<!-- TEMPLATE NOTE-->
+<!-- start note-->
+<div class="content" id="c19">
+<h3>Local references</h3>
+<br>
+<pre>
+A local reference can be placed on any html element, and use the hashtag syntax :
+<pre class="code">
+#serverNameInput
+</pre>It will have all the information about the whole HTML element, all its properties.
+
+You can use it everywhere in the template, not in the TS.
+
+<u>Example :</u>
+<pre class="code">
+&lt;input type="text" class="form-control" #serverNameInput&gt;
+
+&lt;button class="btn btn-primary" (click)="onAddServer(serverNameInput)"&gt;
+Add Server
+&lt;/button&gt;
+</pre>In the component.ts, we can retrieve the value with :
+<pre class="code">
+onAddServer(nameInput : HTMLInputElement)
+{
+    buttonValue = nameInput.value
+}
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+<!-- TEMPLATE NOTE-->
+<!-- start note-->
+<div class="content" id="c18">
+<h3>View encapsulation</h3>
+<br>
+<pre>
+The CSS is restricted to its component. Its doesnt apply to its child. This is a feature of Angular.
+It is possible to override this.
+
+In a given component, in the <b>component decorator</b>, add :
+<pre class="code">
+encapsulation : ViewEncapsulation.Emulated 
+</pre>Possible values :
+
+_ ViewEncapsulation.Emulated : (default) 
+
+_ ViewEncapsulation.None    : no attributes added 
+
+_ ViewEncapsulation.Native  : shadowDom but not every browser supports it.
+</ol>
+Don't forget to import it.
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c17">
+<h3>Component communications</h3>
+<br>
+<pre>
+All the code is the main app :
+
+    _ form with server name and data
+    _ display zone of the servers
+
+We're going to split it into two new components :
+
+    _ cockpit : will contain all the code for the form
+    _ server-element : will display all the information
+
+Remove the ngFor because we want to deal with just a single server element in that component. The for loop will remain in the main 
+app html.
+
+We need a way to add a server-element in the servers array in the main app and we need to retrieve an element of that array in the 
+server-element component. 
+=> We need to pass data between components.
+
+<u>Property and event binding</u>
+
+We can do property binding on :
+
+    _ HTML elements : native properties and events
+    _ Directives : custom properties and events
+    _ Components 
+
+<u>Binding to custom properties</u>
+
+In the server-element, we define an object called 'element' with three properties :
+
+    _ type
+    _ name
+    _ content
+
+In the main app.ts, we populate the serverElements array.
+In the main app.html, in the child tag, we also reference a property called 'element', same name as our object name in the 
+server-element.ts such as :
+<pre class="code">
+    &lt;app-child [element]="serverElements"&gt;&lt;/app-child&gt;
+</pre>By default, all properties of components are accessible inside that component.
+We need to specify which properties will we exposed to parent components with a decorator :
+<pre class="code">
+@Input() element : {type:string, name:string, content:string};
+</pre>It has to be imported too at the top of the file : 
+<pre class="code">
+import { Component, OnInit, Input } from '@angular/core';
+</pre>We can define an alias for that property :
+<pre class="code">
+@Input('alias_name') element : {type:string, name:string, content:string};
+</pre><u>Binding to custom events</u>
+
+Now, we want to inform the parent component that something has changed in the child component.
+@output lets a child send data to its parent
+
+<u>Child setup :</u>
+
+1. HTML : Create a control with an custom event : 
+<pre class='code'>
+Add a name : &lt;input type="text" #name&gt;
+&lt;button (click)="addName(name)"&gt;Submit&lt;/button&gt;
+</pre>2. TS : Import Output, EventEmitter
+
+3. TS : Create a variable with the @Output decorator and assign an EventEmitter to it :
+<pre class='code'>
+@Output() personCreated = new EventEmitter&lt;{personName: string}&gt;();
+</pre>4. Create the custom event : 
+<pre class='code'>
+addName(nameInput : HTMLInputElement)
+{
+    this.personCreated.emit({personName:nameInput.value});
+}
+</pre><u>Parent setup :</u>
+
+1. HTML : In the app-child tag, set up an event watcher (watching the personCreated event) : 
+<pre class='code'>
+&lt;app-test (personCreated)="onPersonAdded($event)"&gt;&lt;/app-test&gt;
+</pre>
+2. TS : Create the onPersonAdded method :
+<pre class='code'>
+onPersonAdded(person)
+{
+    console.log(person.personName);
+}
+</pre>It is also possible to create an alias for the event.
+</pre>
+    </div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c16">
+<h3>Debugging</h3>
+<br>
+<pre>
+In chrome : 
+<pre class="code">
+F12 &gt; main.bundle.js &gt; put a breakpoint
+</pre>Those js files supports sourcemaps. Sourcemaps are an addition of the CLI added to our bundles that translates the (map) js 
+code to our typescript files.
+
+You can directly access the typescript files in the webpack folder : dot (.) folder :
+<pre class="code">
+    ./src/app
+</pre>It has the same structure as our project structure.
+
+<u>Using Augury</u>
+
+It is a firefox/chrome extension. It's a tool that lets you analyse your angular application.
+Open it in the developper tools.
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c15">
+<h3>Components and databinding</h3>
+<br>
+<pre>
+We should clearly define the structure of a recipe (for example). We create what is called a model.
+A model is a typescript file.
+
+In the recipe-list component, we create a recipe.model.ts file, in which we will create a Recipe class :
+<pre class="code">
+export class Recipe
+{
+    public name: string;
+    public description: string;
+    public imagePath: string;
+
+    constructor(name: string, desc:string, imagePath:string)
+    {
+        this.name = name;
+        this.description=desc:
+        this.imagePath=imagePath;
+    }
+}
+</pre><u>Reduced form :</u>
+<pre class="code">
+    constructor(public name:string, public amount:number){}
+</pre>Using this model in another file : 
+<pre class="code">
+    import { Recipe } from '../recipe-list/recipe.model'
+    ...
+    recipes: Recipe[] = [new Recipe('Eclair','Nice taste', 'url image')];
+</pre>Note : We can also create a shared folder in the app/ folder.
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+            <!-- start note-->
+            <div class="content" id="c14">
+                <h3>Databinding</h3>
+                <br>
+                <p>
+<pre>
+Its a way to communicate between the typescript and the template.
+
+Different ways :
+    
+<u>TS -> Template</u>  
+<pre class="code">
+    String interpolation {{ data }}
+    Property binding [property]="data"
+</pre><u>Template -> TS</u>
+<pre class="code">
+    Event binding : react to (user) events (event)="expression"
+</pre><u>Full duplex :</u>
+<pre class="code">
+    Two-way-binding [(ngModel)]="data"
+</pre>
+<u>Case 1 : String interpolation</u>
+    
+!!!! Anything between curly braces must return a string !!!!
+    
+In the TS code of the component : 
+<pre class="code">
+export class ServerComponent
+{
+    serverId: number = 10;
+    serverStatus = 'offline';
+}</pre>In the component's template :
+<pre class="code">    
+&lt;p&gt;Server with {{serverId}} is {{serverStatus}}&lt;/p&gt;
+</pre>We can also use a method :
+<pre class="code">
+serverId: number = 10;
+serverStatus = 'offline';
+
+getServerStatus()
+{
+    return this.serverStatus;
+}
+</pre>      
+<u>Case 2 : Property binding</u>
+
+In the ts, we add a variable. This variable is then used a property value in the html using the syntax : 
+<pre class="code">
+[property]="variable_name"
+</pre><u>Example :</u>
+<pre class="code">
+&lt;button class="btn btn-primary" [disabled]="!allowNewServer"&gt;Add server&lt;/button&gt;
+</pre>    
+<u>Case 3 : Event binding</u>
+    
+Start event names functions with "on" : onCreateServer()
+    
+Call a function on a button click :
+<pre class="code">
+(click)="onCreateServer()"
+</pre>To catch in the TS what the user input is : 
+<pre class="code">
+&lt;input type="text" class="form-control" (input)="onUpdateServerName($event)"&gt;
+</pre>The $event is super important. This keyword gives us access to event data such as mouse position, 
+etc...
+
+We can retrieve the text with : 
+<pre class="code">
+onUpdateServerName(event:Event)
+{
+    this.serverName = (event.target as HTMLInputElement).value;
+}
+</pre>   
+<u>Case 4 : Two-way-binding</u>
+
+!!!! FormsModule is required for 2-way-binding !!!!!
+    
+This is done by :
+
+1. adding the FormsModule to the imports[]  array in the AppModule.
+
+2. You then also need to add the import from @angular/forms  in the app.module.ts file:
+
+        import { FormsModule } from '@angular/forms'; 
+    
+With 2Waybinding, we combine property and event binding :
+<pre class="code">
+&lt;input type="text" class="form-control" [(NgModel)]="serverName"&gt;
+</pre>   
+</pre>
+                </p>
+            </div>
+            <!-- end note -->
+
+
+
+
+
+
+
+
+            <!-- start note-->
+            <div class="content" id="c13">
+                <h3>Components</h3>
+                <br>
+                <p>
+                    <pre>
+An angular app is composed of many components we create.
+
+There is a root component in which we nest multiple components.
+
+Adding a component to the root component :
+
+Create the component folder as a subfolder of app/.
+
+Naming convention : componentName.component.html
+
+Ex : for server component :  server.component.html
+
+Lets edit our server.component.ts :
+<pre class="code">
+
+    // to use the Component decorator
+    import { Component } from '@angular/core';
+
+
+    // @Component is a decorator that specifies that ServerComponent
+    // is a special type of class
+    @Component(
+    // component configuration object
+    {
+        selector: 'app-server',                 /*  component tag name */
+        templateUrl: './server.component.html'  /*  html file */
+    })
+    export class ServerComponent
+    {
+
+    }
+</pre>The component is ready to use but we need to add it in the module file.
+An angular app can have multiple modules (aka packages).
+
+To add a component to a module, we need to modify the app.module.ts :
+
+    1. Import it : import { ServerComponent } from './server/server.component';
+
+    2. Add it in the declarations array
+
+
+The imports array beneath the declarations let us add other tiers modules.
+
+<u>Creating a component in the CLI :</u>
+<pre class="code">
+&gt; ng generate component component-name
+&gt; ng g c path/component-name
+&gt; ng g c component-name --skipTests true
+</pre><u>HTML templates</u>
+
+In the .ts file of the component, there has to be either templateUrl or template.
+
+templateUrl => external html file
+template    => inline html
+
+We can use backticks to split into multiple lines and use js string interpolation.
+
+<u>Styling the components</u>
+
+The style of a template is uniquely defined in its own .css component file.
+
+<u>Using the attribute selector [] to select a component</u>
+
+In the server.component.ts we change the name of the selector with added brackets :
+<pre class="code">
+    selector: 'app-server' => selector: '[app-server]'
+</pre>This lets us insert the component with a html tag :
+<pre class="code">
+    &lt;div app-server&gt;&lt;/div&gt;
+</pre><u>Using the class selector . to select a component</u>
+
+In the server.component.ts we change the name of the selector with added brackets
+
+    selector: 'app-server' => selector: '.app-server'
+
+This lets us insert the component with a html tag :
+<pre class="code">
+    &lt;div class="app-server"&gt;&lt;/div&gt;
+</pre>Note : selecting by id instead of a class is not implemented.                        
+                    </pre>
+                </p>
+            </div>
+            <!-- end note -->
+
+
+
+
+
+
+
+
+            <!-- start note-->
+            <div class="content" id="c12">
+                <h3>Installing bootstrap</h3>
+                <br>
+                <p>
+<pre>
+In the terminal :
+<pre class="code">
+&gt; npm install --save bootstrap@3
+</pre>In the file "angular.json", modify the styles array the architect build node :
+
+Get the relative path to bootstrap.min.css :
+<pre class="code">
+"styles": 
+[
+    "src/styles.css",
+    "node_modules/bootstrap/dist/css/bootstrap.min.css"
+],
+</pre>Check if bootstrap was correctly imported by looking at the css by doing F12 and checking the style tags. 
+</pre>
+                </p>
+            </div>
+            <!-- end note -->
+
+
+            
+            <!-- start note-->
+            <div class="content" id="c11">
+                <h3>Directives</h3>
+                <br>
+                <p>
+                    <pre>
+<a href="https://angular.io/guide/attribute-directives" target="#">Directives</a> are instructions in the DOM.
+
+<u>Two types of directives :</u>
+
+Attribute directives : Only alter the properties of the DOM, ie the BackgroundColor
+
+Structural directives : Alters the DOM by destroying and adding elements in it
+
+<i>Note :</i> We cannot have more than one structural directive on the same element. 
+
+<u>Example :</u>
+<pre class="code">
+    &lt;p appHighlight&gt;Receives a highlight !&lt;/p&gt;
+
+    @Directive(
+    {
+        selector:'[appHighlight]'
+    })
+    export class HightlightDirective
+    {	}
+</pre>You can generate a directive with the CLI :
+<pre class="code">
+    &gt; ng generate directive highlight
+</pre>The CLI creates src/app/highlight.directive.ts, a corresponding test file src/app/highlight.directive.spec.ts, 
+and declares the directive class in the root AppModule.   
+
+After editing the hightlight.ts (note the use of <a href="https://angular.io/api/core/ElementRef" target="#">ElementRef</a>):
+<pre class="code">
+import { Directive, ElementRef } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective 
+{
+    constructor(el: ElementRef) 
+    {
+       el.nativeElement.style.backgroundColor = 'yellow';
+    }
+}
+</pre>
+
+                    </pre>
+                </p>
+            </div>
+            <!-- end note -->
+
+
+
+
+
+
+            <!-- start note-->
+            <div class="content" id="c10">
+                <h3>ngFor</h3>
+                <br>
+                <p>
+                    <pre>
+Say we have an array called servers :
+<pre class="code">
+&lt;app-server *ngFor="let server of servers"&gt;
+    &lt;p *ngIf="serverCreated"&gt;
+        Server was created, server name is {{ serverName }}
+    &lt;/p&gt;
+&lt;/app-server&gt;
+</pre>Getting the index in the loop :
+<pre class="code">
+&lt;app-server *ngFor="let server of servers; let i = index"&gt;
+    &lt;p *ngIf="serverCreated"&gt;
+        Server was created, server name is {{ serverName }}
+    &lt;/p&gt;
+&lt;/app-server&gt;
+</pre>
+                    </pre>
+                </p>
+            </div>
+            <!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- start note-->
+            <div class="content" id="c1">
+                <h3>Installation</h3>
+                <br>
+                <p>
+<pre class="code">
+&gt; sudo npm install -g @angular/cli@latest
+</pre>
+                </p>
+            </div>
+            <!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- start note-->
+            <div class="content" id="c2">
+                <h3>Creating a new app</h3>
+                <br>
+                <p>
+<pre class="code">
+&gt; ng new myApp
+</pre>                 
+                </p>
+            </div>
+            <!-- end note -->
+
+            <!-- start note-->
+            <div class="content" id="c3">
+                <h3>Running an app</h3>
+                <br>
+                <p>
+<pre class="code">
+&gt; ng serve
+</pre>
+                </p>
+            </div>
+            <!-- end note -->
+
+            <!-- start note-->
+            <div class="content" id="c4">
+                <h3>Deploying an app</h3>
+                <br>
+                <p>
+                    <pre>
+<u>Pour rediriger l'url cible :</u>
+<pre class="code">&gt; ng serve --proxy-config proxyconfig.json
+</pre>Option dans proxyconfig.json "target" : http://localhost:1234
+
+<u>Generate a bundle :</u>
+<pre class="code">
+&gt;  ng build --prod
+</pre>There is a dist folder, inside all the files needed for deployment.
+Only serve this distribution folder.
+
+=> Create a node server using express and serve the dist dir : 
+<pre class="code">
+    app.user(express.static(path.join(__dirname, '../frontend/dist/')))
+</pre>But on production, use NGINX :
+<pre class="code">
+if (process.env.NODE_ENV === 'production')
+{
+    serve it thru nginx
+}
+</pre>
+                    </pre>
+                </p>
+            </div>
+            <!-- end note -->
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- start note-->
+            <div class="content" id="c5">
+                <h3>Angular workflow</h3>
+                <br>
+                <p>
+                    <pre>
+The file index.html is served by the server.
+
+The app.component.ts defines the name of the selector : it is the name of the component that will be 
+used with tags. There are javascript imports in index.html that contains our angular code.
+
+In main.ts, we have :
+<pre class="code">
+platformBrowserDynamic().bootstrapModule(AppModule).catch(err => console.error(err));
+</pre>where AppModule is located in the root component, and it defines all the components that exists.
+This links the component tags to the code.
+                    </pre>
+                </p>
+            </div>
+            <!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- start note-->
+            <div class="content" id="c6">
+                <h3>ngModel Example</h3>
+                <br>
+                <p>
+                    <pre>
+<u>Component.ts :</u>
+<pre class="code">
+
+    @Component(
+    {
+        selector: 'app-root',
+        templateUrl: './app.component.html',
+        styleUrls: ['./app.component.css']
+    })
+    export class AppComponent 
+    {
+        name = 'Claude';
+    }
+
+</pre><u>Component.html :</u> 
+<pre class="code">
+    input type="text" [(ngModel)]="name"
+    &lt;p&gt;{{ name }}&lt;/p&gt;
+</pre>When you try to run the app and do F12 :
+
+<i>Can't bind to 'ngModel' since it isn't a known property of 'input'.</i>
+
+We need to import ngModel in app.module.ts :
+<pre class="code">
+    import { BrowserModule } from '@angular/platform-browser';
+    import { NgModule } from '@angular/core';
+    import { FormsModule } from '@angular/forms';  &lt; here
+
+    import { AppComponent } from './app.component';
+
+    @NgModule({
+        declarations: [
+        AppComponent
+        ],
+        imports: [
+        BrowserModule,
+        FormsModule 	&lt; here
+        ],
+        providers: [],
+        bootstrap: [AppComponent]
+    })
+    export class AppModule { }
+</pre>This will cause the input text to start with the name value and whenever we change the input text, 
+then the name display will change too.
+                    </pre>
+                </p>
+            </div>
+            <!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- start note-->
+            <div class="content" id="c7">
+                <h3>ngIf</h3>
+                <br>
+                <p>
+                    <pre>
+ngIf is a structural directive : it changes the structure of our DOM.
+Structural directives start with a star : *
+
+<u>Simple if :</u>
+<pre class="code">
+    &lt;p *ngIf="boolean_variable"&gt;
+        ... do something ...
+    &lt;/p&gt;
+</pre><u>if else :</u>
+
+We need to use a template variable to reference it in the else clause.
+<pre class="code">
+&lt;p *ngIf="serverCreated, else noServer"&gt;
+    Server was created, server name is {{ serverName }}
+&lt;/p&gt;
+
+&lt;ng-template #noServer&gt;
+    &lt;p&gt;No server was created.&lt;/p&gt;
+&lt;/ng-template&gt;
+</pre>
+</pre><u>Complete if then else :</u>
+<pre class="code">
+    &lt;ng-container *ngIf="isLoggedIn; then loggedIn; else loggedOut"&gt;
+    &lt;/ng-container&gt;
+</pre>
+                    </pre>
+                </p>
+            </div>
+            <!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- start note-->
+            <div class="content" id="c8">
+                <h3>ngStyle</h3>
+                <br>
+                <p>
+                    <pre>
+Attribute directives don't add or remove elements. They only change the element they were placed on.
+
+ngStyle dynamically changes the style.
+
+We use brackets to bind this directive to some property :
+<pre class="code">
+    &lt;p [ngStyle]="{backgroundColor: 'red'}"&gt;Server status&lt;/p&gt;
+</pre>But we want it to be dynamic, so :
+<pre class="code">
+    &lt;p [ngStyle]="{color: getColor()}"&gt;Server status&lt;/p&gt;
+</pre>with :
+<pre class="code">
+    function getColor()
+    {
+        return this.serverStatus === 'online' ? 'green' : 'red';
+    }
+</pre>
+                    </pre>
+                </p>
+            </div>
+            <!-- end note -->
+
+
+
+
+
+            
+
+
+
+
+
+
+        <!-- start note-->
+        <div class="content" id="c9">
+            <h3>ngClass</h3>
+            <br>
+            <p>
+                <pre>
+This attribute directive lets us add or remove classes when a condition is true :
+<pre class="code">
+[ngClass]="{class_name="boolean_variable"}"
+</pre><u>Example 1:</u>
+<pre class="code">
+[ngClass]="{online:serverStatus === 'online'}"
+</pre><u>Example 2:</u>
+<pre class="code">
+&lt;p [ngClass]="{online:showOnlineClass(),offline:!showOnlineClass()}"&gt;
+    Server with {{serverId}} is {{getServerStatus()}}
+&lt;/p&gt;
+</pre>
+                </pre>
+            </p>
+        </div>
+        <!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>   
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script>
+
+        var visibleContentId = 0;
+
+        // display a selected note
+        function showNote(index)
+        {        
+            // toc
+            contentId = document.getElementById("toc" + visibleContentId);
+            contentId != null ? contentId.style.color = "black": null;
+            
+
+            contentId = document.getElementById("toc" + index);
+            contentId.style.color = "red";
+
+            // contenu
+            contentId = document.getElementById("c" + visibleContentId);
+            contentId != null ? contentId.style.display = "none": null;
+
+            contentId = document.getElementById("c" + index);
+            contentId.style.display = "initial";
+
+            visibleContentId = index;
+        }
+
+        // toggles the section
+        function toggleSection(sectionId)
+        {        
+            currentSection = document.getElementById("sc" + sectionId);
+            displayValue = currentSection.style.display;
+            
+            if (displayValue.length === 0 || displayValue === "none") 
+                currentSection.style.display = "initial"
+            else
+                currentSection.style.display="none";
+        
+        }
+
+
+    </script>
+
+</body>
+</html>
