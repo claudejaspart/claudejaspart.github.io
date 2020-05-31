@@ -238,6 +238,8 @@
                 <p class="section" onclick="toggleSection(9)" id="section9"><b>&nbsp;S9 : HTTP</b></p>
                 <ul class="section_content" id="sc9">
                     <li onclick="showNote(77)" id="toc77">Introduction</li>
+                    <li onclick="showNote(78)" id="toc78">POST</li>
+                    <li onclick="showNote(79)" id="toc79">GET</li>
                 </ul>
             </div>
         </div>
@@ -257,6 +259,114 @@
 <!-- TEMPLATE NOTE-->
 
 
+
+<!-- start note-->
+<div class="content" id="c79">
+<h3>Sending GET requests</h3>
+<br>
+<pre>
+We want to get all the posts we sent :
+<pre class='code'>
+this.http.get('https://angular-api-testing.firebaseio.com/posts.json').subscribe(
+    (posts) =>
+    {
+    console.log(posts);
+    }
+);
+</pre>We want to add that json data into an array. 
+
+<u>Using RxJS operators to transform data response :</u>
+
+We will be using the map operator. We will loop through all the keys and create a new array using object 
+destructuring using the <a hreaf="https://howtodoinjava.com/typescript/spread-operator/">typescript spread operator</a> :
+<pre class='code'>
+import { map } from 'rxjs/operators';
+
+this.http.get&lt;{[key:string]: Post}&gt;('https://angular-api-testing.firebaseio.com/posts.json')
+.pipe(
+  map(responseData  =>
+    {
+      const postsArray = [];
+      for (const key in responseData)
+      {
+        if(responseData.hasOwnProperty(key))
+          postsArray.push({...responseData[key], id: key});
+      }
+      return postsArray;
+    }
+  )
+)
+.subscribe(
+  (posts) =>
+  {
+    this.loadedPosts.push(posts);
+    console.log(this.loadedPosts[0]);
+  }
+);
+</pre>Where post is an interface : 
+<pre class='code'>
+export interface Post
+{
+    title : string;
+    content: string;
+    id? : string;
+}
+</pre><u>Displaying the posts :</u>
+<pre class='code'>
+&lt;p *ngIf="loadedPosts.length &lt; 1"&gt;No posts available!&lt;/p&gt;
+&lt;ul class="list-group" *ngIf="loadedPosts.length &gt; 0"&gt;
+    &lt;li class="list-group-item" *ngFor="let post of loadedPosts"&gt;
+        &lt;h3&gt;{{ post.title }}&lt;/h3&gt;
+        &lt;p&gt;{{ post.content }}&lt;/p&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+</pre><u>Logic for a loader :</u>
+
+Create a variable called isFetching set to false;
+
+Before calling the GET request, set it to true. When we receive the data in the subscribe, set it to false.
+Use ngIf in the Html template to display it while isFetching is true.
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+<!-- start note-->
+<div class="content" id="c78">
+<h3>Sending POST requests</h3>
+<br>
+<pre>
+<u>Sending a post request</u>
+
+In the appModule, we need to import HttpClientModule :
+<pre class='code'>
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+    ...
+    imports: [HttpClientModule],
+    ...
+})
+</pre>Then in the ts file, we inject our http client :
+<pre class='code'>
+import { HttpClient } from '@angular/common/http';
+
+constructor(private http : HttpClient){}
+</pre>Send a post request :
+
+A firebase requirement is to append posts.json to the api endpoint.
+Angular will convert automatically our object into a json format when sending it in the request body.
+<pre class='code'>
+this.http.post&lt;{ name:string }&gt;(url_api + "posts.json", request_body).subscribe(responseData => { console.log(responseData); });
+</pre> If we dont subscribe, then the http will not be even sent because no one is interested in the response.
+This observable is given by angular so no need to clean it.
+
+This will store some data on the firebase side with an ID. We can retrieve it with a GET request. 
+</pre>
+</div>
+<!-- end note -->
 
 
 
@@ -281,29 +391,6 @@ We will use Firebase => Database => realtime database in test mode :
 
 https://angular-api-testing.firebaseio.com/
 
-<u>Sending a post request</u>
-
-In the appModule, we need to import HttpClientModule :
-<pre class='code'>
-import { HttpClientModule } from '@angular/common/http';
-
-@NgModule({
-    ...
-    imports: [HttpClientModule],
-    ...
-})
-</pre>Then in the ts file, we inject our http client :
-<pre class='code'>
-import { HttpClient } from '@angular/common/http';
-
-constructor(private http : HttpClient){}
-</pre>Send a post request :
-
-A firebase requirement is to append posts.json to the api endpoint.
-Angular will convert automatically our object into a json format when sending it in the request body.
-<pre class='code'>
-this.http.post(url_api + "posts.json", request_body)
-</pre> 
 </pre>
 </div>
 <!-- end note -->
@@ -1117,12 +1204,12 @@ activatedEmitter = new Subject&lt;ValueType&gt;()
 this.userService.activatedEmitter.next(value_to_change);
 
 // Receiving the data :
-this.userService.activateEmitter.suscribe( (data) => { myCode });
+this.userService.activateEmitter.subscribe( (data) => { myCode });
 </pre>!!! Do not use EventEmitter for direct 'in code' changes between components !!!
 
 You need to destroy the subject when exiting the component with :
 <pre class='code'>
-this.userService.unsuscribe();
+this.userService.unsubscribe();
 </pre>
 </pre>
 </div>
@@ -1146,7 +1233,7 @@ You call an operator with the pipe() method :
 <pre class='code'>
 import { operatorName (ex: map) } from 'rxjs/operators';
 
-myObservable.pipe(map((data)=>{return doSomething})).suscribe((data)=>{do something})    
+myObservable.pipe(map((data)=>{return doSomething})).subscribe((data)=>{do something})    
 </pre>The pipe() method takes an unlimited amount of arguments. 
 </pre>
 </div>
@@ -1177,9 +1264,9 @@ const customObs = Observable.create(
         observer.complete();                        // observable is finished
     }
 );
-</pre>Suscribe to the observable :
+</pre>subscribe to the observable :
 <pre class='code'>
-customObs.suscribe((data)=>{ your code }, (error)=>{ your code }, ()=>{ obs completed });
+customObs.subscribe((data)=>{ your code }, (error)=>{ your code }, ()=>{ obs completed });
 </pre>!!! An error cancels the observable, it never completes !!!
 
 You very very rarely create your own observables.
@@ -1204,15 +1291,17 @@ function :
 import { interval } from rxjs;
 </pre>It will fire an event every x milliseconds :
 <pre class='code'>
-this.ObsInterval = interval(1000).suscribe( count =>
+this.ObsInterval = interval(1000).subscribe( count =>
 {
     console.log(count);
 })
 </pre>Some observable keep on going (like interval), other just emit an event and are done (like http request). It is very
 important to manage the observable when we quit the component to avoid memory leak. We can use the ngOnDestroy hook for example :
 <pre class='code'>
-this.ObsInterval.unsuscribe();
+this.ObsInterval.unsubscribe();
 </pre>Angular will take care of cleaning all observables that are built-in.
+
+Note : A variable with a $ suffix is used to indicate that the variable is an Observable. Ex : user$
 </pre>
 </div>
 <!-- end note -->
@@ -1291,7 +1380,7 @@ export class ServerResolver implements Resolve&lt;Server&gt;
 { path : 'users/:id/:name',component:UserComponent, resolve:{server:ServerResolver}},
 </pre>We can access the data with the 'data' baggage :
 <pre class='code'>
-this.route.data.suscribe(
+this.route.data.subscribe(
     (data : Data ) =>
     {
         // this is the name of the object used in the resolver just above :
@@ -1697,8 +1786,8 @@ To access the query parameters in the given component, we need to load Activated
 
 To retrieve when updated :
 <pre class='code'>
-this.route.queryParams.suscribe()
-this.route.fragment.suscribe()
+this.route.queryParams.subscribe()
+this.route.fragment.subscribe()
 </pre>
 
 </pre>
@@ -1757,9 +1846,9 @@ It's fine to use "snapshot" for the first initialization but for subsequent chan
 
 We have this.route.params which is an observable. Observables are a feature from a 3rd party package (not from Angular),
 that lets us work with asynchronous tasks.
-An observable is an easy way to suscribe to an event that might happen in the future, and execute some code when it happens 
+An observable is an easy way to subscribe to an event that might happen in the future, and execute some code when it happens 
 without having to wait for it now. 
-This.route.params.suscribe() has 3 function parameters that we can pass. The first one is the most important :
+This.route.params.subscribe() has 3 function parameters that we can pass. The first one is the most important :
 The first function is executed when new data is fired by the observable:
 <pre class='code'>
 import { ActivatedRoute, Params } from '@angular/router';
@@ -2069,7 +2158,7 @@ Lets say we want to provide some event which we can trigger in one component and
     this.accountsService.statusUpdated.emit(status);
 </pre>3. In the second component, in the constructor block, where we are being notified of the change : 
 <pre class='code'>
-    this.accountsService.statusUpdated.suscribe( (status:string) => {process the data} );
+    this.accountsService.statusUpdated.subscribe( (status:string) => {process the data} );
 </pre>    
 </pre>
 </div>
