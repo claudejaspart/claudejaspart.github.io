@@ -240,6 +240,8 @@
                     <li onclick="showNote(77)" id="toc77">Introduction</li>
                     <li onclick="showNote(78)" id="toc78">POST</li>
                     <li onclick="showNote(79)" id="toc79">GET</li>
+                    <li onclick="showNote(80)" id="toc80">DELETE</li>
+                    <li onclick="showNote(81)" id="toc81">Error handling</li>
                 </ul>
             </div>
         </div>
@@ -257,6 +259,104 @@
 </div>
 <!-- end note -->
 <!-- TEMPLATE NOTE-->
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c81">
+<h3>Error handling</h3>
+<br>
+<pre>
+We can have problems like internet connection, server problems ...
+We can set rules in firebase for read, write ... 
+
+We can add an error handler in the http subscribe :
+<pre class='code'>
+this.postService.fetchPosts().subscribe(
+    (posts)=>
+    {
+        this.isFetching = false;
+        this.loadedPosts = posts;
+    },
+    (error)=>{console.log(error.message)}
+    );
+</pre>We could also create a subject, particularly usefull when multiple places in the code are 
+interested by the error :
+<pre class='code'>
+// PostService.ts
+import { Subject } from 'rxjs';
+
+// create variable
+error = new Subject&lt;string&gt;()
+
+// in the createAndStorePost :
+ ...subscribe(
+     ()=>{},
+     (error)=>{this.error.next(error.message);}
+ )
+</pre>We can now subscribe and unsubscribe to the error handler in the appComponent.ts:
+<pre class='code'>
+import {Subscription} from 'rxjs';
+
+private errorSub : Subscription;
+
+this.errorSub = this.postService.error.subscribe((errorMessage)={do something});
+
+// destroy the observable
+ngOnDestroy()
+{
+    this.errorSub.unsubscribe();
+}
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start note-->
+<div class="content" id="c80">
+<h3>Send a DELETE request</h3>
+<br>
+<pre>
+It's very simple :
+<pre class='code'>
+this.http.delete(this.firebaseUrl);
+</pre>
+</pre>
+</div>
+<!-- end note -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2127,6 +2227,17 @@ Instead of adding a service class to the providers[]  array in AppModule , you c
 offer one advantage though: Services can be loaded lazily by Angular (behind the scenes) and redundant code can be removed 
 automatically. This can lead to a better performance and loading speed - though this really only kicks in for bigger services 
 and apps in general.
+
+<u>Example :</u>
+<pre class='code'>
+import { Injectable } from '@angular/core';
+
+@Injectable({providedIn: 'root'})
+export class PostsService
+{
+    
+}
+</pre>
 </pre>
 </div>
 <!-- end note --><!-- TEMPLATE NOTE-->
