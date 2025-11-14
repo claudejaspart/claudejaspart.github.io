@@ -49,7 +49,7 @@
             let stinbb = document.getElementById("stackinbb");
             let potsize = document.getElementById("potsize");
 
-            stinbb.innerHTML =   "Stack &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>" + Math.round(stack / bb * 100) / 100 + " BB</strong>";
+            stinbb.innerHTML =   "Stack &nbsp;&nbsp;&nbsp;&nbsp; <strong>" + Math.round(stack / bb * 100) / 100 + " BB</strong>";
 
             let pot = (sb*1 + bb*1 + ante*1)/(bb * 1);
             potsize.innerHTML  = "Pot size  &nbsp;&nbsp;&nbsp;<strong>" + Math.round(pot * 100) / 100 + " BB</strong>";
