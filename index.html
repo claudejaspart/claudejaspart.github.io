@@ -1,459 +1,58 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trainer</title>
+    <title>Document</title>
+
+    <style>
+        body
+        {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
 </head>
-<style>
-    body
-    {
-        margin: 50px;
-    }
-    .poker-table
-    {
-        height: 252px;
-        display: inline-flex;
-    }
-
-    .corner
-    {
-        width: 228px;
-        height: 228px;
-        border-radius: 50%;
-        border:12px solid #454545;
-        background-color: #34363d;
-        z-index: -1;
-    }
-
-    .center
-    {
-        width: 228px;
-        height: 228px;
-        border-left:12px solid transparent;
-        border-right:12px solid transparent;
-        border-top:12px solid #454545;
-        border-bottom:12px solid #454545;
-        background-color: #34363d;
-        transform: translateX(-124px);
-        z-index:0;
-    }
-
-    .right
-    {
-        transform: translateX(-253px);
-    }
-
-    .holecards
-    {
-        z-index: 2;
-        display: flex;
-        position:absolute;
-
-    }
-    .card
-    {
-        height: 70px;
-        width: 44px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 35px;
-        border-radius: 12px;
-        color:white;
-        margin: 2px;
-    }
-
-    .blue
-    {
-        background-color: #1ea3cd;
-        
-    }
-    
-    .red
-    {
-        background-color: #cd481e;
-    }
-
-    .stack
-    {
-        z-index: 3;
-        height: 44px;
-        width: 93px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 17px;
-        border-radius: 12px;
-        color:white;
-        background-color: #7265b9 ;
-        position:absolute;
-
-    }
-
-    .btn-holecards
-    {
-        transform: translate(210px,-120px);
-    }
-
-    
-
-    .btn-stack
-    {
-        transform: translate(210px,-40px);
-    }
-
-    .sb-stack
-    {
-        transform: translate(-40px,-180px);
-    }
-
-    .bb-stack
-    {
-        transform: translate(450px,-180px);
-    }
-
-    .dealer-btn
-    {
-        width: 22px;
-        height: 22px;
-        background-color: #CA8A2A;
-        color:white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 100%;
-    }
-
-    .p1
-    {
-        transform: translate(60px,-170px);
-    }
-
-    .p2
-    {
-        transform: translate(420px,-170px);
-    }
-
-    .p3
-    {
-        
-        transform: translate(180px,-40px);
-    }
-
-    .p1a
-    {
-        transform: translate(60px,-190px);
-    }
-
-    .p2a
-    {
-        transform: translate(400px,-190px);
-    }
-
-    .p3a
-    {
-        
-        transform: translate(240px,-160px);
-    }
-
-    .paction
-    {
-        color:white
-    }
-
-    button
-    {
-        margin: 10px;
-        height: 30px;
-        width: 80px;
-        font-weight: bold;
-    }
-
-    button:hover
-    {
-        cursor: pointer;
-    }
-
-    .answer
-    {
-        position: absolute;
-        left:210px;
-        margin-top: 20px;
-        display: flex;
-        height: 40px;
-        width: 240px;
-        font-size: 35px;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .correct
-    {
-        background-color: lightgreen;
-        color:black;
-    }
-
-    .incorrect
-    {
-        background-color: darkred;
-        color: white;
-    }
-
-    .image-container img 
-    {
-        height: 1px;
-        width:1px;
-    }
-
-    .image-container:hover img {
-
-        transform: scale(100);
-    }
-
-    a
-    {
-        text-decoration: none;
-    }
-
-
-</style>
 <body>
-    
-    <div class="poker-table">
-        <div class="corner left"></div>
-       <div class="center"></div>
-       <div class="corner right"></div>
-    </div>
+    <h1>STACK TO BB</h1>
 
-    <div class="stack sb-stack">
-        SB <br> 20BB
-    </div>
+    <form>
+    <label for="st">Stack </label>
+    <input type="text" id="st" name="st"><br><br>
 
-    <div class="stack bb-stack">
-        BB <br> 15BB
-    </div>
+    <label for="SB">Small </label>
+    <input type="text" id="SB" name="SB" value="10"><br><br>
 
-    <div class="holecards btn-holecards">
-        <div class="card" id="card1"></div>
-        <div class="card" id="card2"></div>
-    </div>
+    <label for="BB">Big &nbsp;</label>
+    <input type="text" id="BB" name="BB" value="20"><br><br>
 
-    <div class="stack btn-stack">
-        BTN <br> 25BB
-    </div>
+    <label for="ante">Ante&nbsp;</label>
+    <input type="text" id="ante" name="ante" value="0">
+ 
+    </form>
 
-    <div class="dealer-btn p3">D</div>
+    <button onclick="calc()">Calculate</button>
 
-    <div class="paction p3a"></div>
-
-    <a href="Editor.html">EDITOR ></a>
-    <br><br>
-
-    <!-- UPDATE -->
-    <select id="mw-btn-open" onchange="selectedRange('mw-btn-open')">
-        <option>-- MW BTN OPEN --</option>
-                <option value="MW_BTN_25">MW BTN 25</option>
-                <option value="MW_BTN_22">MW BTN 22</option>
-                <option value="MW_BTN_20">MW BTN 20</option>
-                <option value="MW_BTN_18">MW BTN 18</option>
-                <option value="MW_BTN_16">MW BTN 16</option>
-                <option value="MW_BTN_15">MW BTN 15</option>
-                <option value="MW_BTN_14">MW BTN 14</option>
-                <option value="MW_BTN_13">MW BTN 13</option>
-                <option value="MW_BTN_12">MW BTN 12</option>
-                <option value="MW_BTN_11">MW BTN 11</option>
-                <option value="MW_BTN_10">MW BTN 10</option>
-                <option value="MW_BTN_09">MW BTN 09</option>
-                <option value="MW_BTN_08">MW BTN 08</option>
-                <option value="MW_BTN_07">MW BTN 07</option>
-                <option value="MW_BTN_06">MW BTN 06</option>
-                <option value="MW_BTN_05">MW BTN 05</option>
-                <option value="MW_BTN_04">MW BTN 04</option>
-                <option value="MW_BTN_03">MW BTN 03</option>
-                <option value="MW_BTN_02">MW BTN 02</option>
-    </select>
-
-    <br><br>
-
-    <button onclick ="checkAnswer('white')" style="background-color: white;">FOLD</button>
-    <button onclick ="checkAnswer('lightseagreen')" style="background-color: lightseagreen;">CALL</button>
-    <button onclick ="checkAnswer('yellow')" style="background-color: yellow;">RAISE</button>
-    <button onclick ="checkAnswer('orange')" style="background-color: orange;">3 BET</button>
-    <button onclick ="checkAnswer('red')" style="background-color: red;">ALL IN</button>
-    <button onclick ="nextHand()" style="background-color: lightcoral;color:white;">NEXT ></button>
-    <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<label>Score : <span id="score">0</span> / <span id="tries">0</span></label>
-    &nbsp;&nbsp;<label>Accuracy : <span id="acc">0</span> %</label>
-    &nbsp;&nbsp;<a href="" target="_blank" class="showRange" id="show">Show Range</a>
-    &nbsp;&nbsp;<div class="answer" id="ans"></div>
-
-
-    <script type="text/javascript" src="./files/holecards.js"></script>
-
-<!-- update -->
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_25.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_22.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_20.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_18.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_16.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_15.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_14.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_13.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_12.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_11.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_10.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_09.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_08.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_07.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_06.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_05.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_04.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_03.txt"></script>
-  <script type="text/javascript" src="./ranges/MW_BTN/OPEN/txt/MW_BTN_02.txt"></script>
+    <p id="stackinbb"></p>
+    <p id="potsize"></p>
 
     <script>
-        var cards = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7','6', '5','4','3','2'];
 
-        var score = 0;
-        var tries = 0;
-        var currentHandIndex = 0;
-        var customRange;
-        var ansEl = document.getElementById("ans");
-
-
-
-        function selectedRange(control_id)
+        function calc()
         {
-            var rangeName = document.getElementById(control_id).value;
-            var targetShow = document.getElementById("show");
+            let stack = document.getElementById("st").value;
+            let sb = document.getElementById("SB").value;
+            let bb = document.getElementById("BB").value;
+            let ante = document.getElementById("ante").value;
 
-            // UPDATE 
-            switch(rangeName)
-            {
-                case "MW_BTN_25" : customRange = MW_BTN_25; targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_25" + ".png"); break;
-                case "MW_BTN_22" : customRange = MW_BTN_22;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_22" + ".png");break;
-                case "MW_BTN_20" : customRange = MW_BTN_20;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_20" + ".png");break;
-                case "MW_BTN_18" : customRange = MW_BTN_18;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_18" + ".png");break;
-                case "MW_BTN_16" : customRange = MW_BTN_16;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_16" + ".png");break;
-                case "MW_BTN_15" : customRange = MW_BTN_15;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_15" + ".png");break;
-                case "MW_BTN_14" : customRange = MW_BTN_14;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_14" + ".png");break;
-                case "MW_BTN_13" : customRange = MW_BTN_13;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_13" + ".png");break;
-                case "MW_BTN_12" : customRange = MW_BTN_12;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_12" + ".png");break;
-                case "MW_BTN_11" : customRange = MW_BTN_11;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_11" + ".png");break;
-                case "MW_BTN_10" : customRange = MW_BTN_10;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_10" + ".png");break;
-                case "MW_BTN_09" : customRange = MW_BTN_09;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_09" + ".png");break;
-                case "MW_BTN_08" : customRange = MW_BTN_08;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_08" + ".png");break;
-                case "MW_BTN_07" : customRange = MW_BTN_07;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_07" + ".png");break;
-                case "MW_BTN_06" : customRange = MW_BTN_06;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_06" + ".png");break;
-                case "MW_BTN_05" : customRange = MW_BTN_05;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_05" + ".png");break;
-                case "MW_BTN_04" : customRange = MW_BTN_04;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_04" + ".png");break;
-                case "MW_BTN_03" : customRange = MW_BTN_03;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_03" + ".png");break;
-                case "MW_BTN_02" : customRange = MW_BTN_02;  targetShow.setAttribute('href', './ranges/MW_BTN/OPEN/img/'+ "MW_BTN_02" + ".png");break;
-                default: break;
-            }
+            let stinbb = document.getElementById("stackinbb");
+            let potsize = document.getElementById("potsize");
 
-            console.log(rangeName);
-            startTrainer();
-            
+            stinbb.innerHTML =   "Stack &nbsp;&nbsp;&nbsp;: " + Math.round(stack / bb * 100) / 100 + " BB";
+
+            let pot = (sb*1 + bb*1 + ante*1)/(bb * 1);
+            potsize.innerHTML  = "Pot size : " + Math.round(pot * 100) / 100 + " BB";
         }
-
-        function startTrainer()
-        {
-            score = 0;
-            tries = 0;
-
-            scoreEl.innerHTML = score;
-            triesEl.innerHTML = tries;
-            accEl.innerHTML = Math.round(score/tries*10000)/100;
-            nextHand();
-
-        }
-
-        function nextHand()
-        {
-            ansEl = document.getElementById("ans");
-            ansEl.style.backgroundColor = "white";
-            ansEl.innerHTML = "";
-
-            var card1Index = Math.floor(Math.random() * 13);
-            var card2Index = Math.floor(Math.random() * 13);
-            var card1 = cards[card1Index];
-            var card2 = cards[card2Index];
-
-            var suited="";
-            var hand = "";
-
-            if (card1Index !== card2Index)
-            {
-                suited = Math.floor(Math.random() * 2) == 0 ? "o" : "s";
-            }
-
-            if (card1Index <= card2Index)
-            {
-                hand = card1 + card2 + suited;
-                
-            }
-            else
-            {
-                hand = card2 + card1 + suited;
-            }
-
-            currentHandIndex = holecards.indexOf(hand);
-
-            // affichage main
-            document.getElementById("card1").innerHTML = card1;
-            document.getElementById("card2").innerHTML = card2;
-
-            if (suited=== "" || suited === "s")
-            {
-                document.getElementById("card1").style.backgroundColor = "#cd481e";
-                document.getElementById("card2").style.backgroundColor = "#cd481e";
-            }
-            else
-            {
-                document.getElementById("card1").style.backgroundColor = "#cd481e";
-                document.getElementById("card2").style.backgroundColor = "#1ea3cd";
-            }
-            
-        }
-
-        function checkAnswer(ans)
-        {
-
-            var scoreEl = document.getElementById("score");
-            var triesEl = document.getElementById("tries");
-            var accEl = document.getElementById("acc");
-
-            tries = tries + 1;
-      
-
-            // correct answer
-            if (ans === customRange[currentHandIndex] )
-            {
-                
-                ansEl.innerHTML = "CORRECT !";
-                ansEl.style.backgroundColor = "lightgreen";
-                ansEl.style.color="black";
-
-                score++;
-            }
-            else
-            {
-                
-                ansEl.innerHTML = "INCORRECT !";
-                ansEl.style.backgroundColor = "darkred";
-                ansEl.style.color="white";
-            }
-
-            scoreEl.innerHTML = score;
-            triesEl.innerHTML = tries;
-            accEl.innerHTML = Math.round(score/tries*10000)/100;
-        }
-
 
     </script>
+
 </body>
 </html>
-
-
