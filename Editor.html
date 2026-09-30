@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Range Editor</title>
+</head>
+
+<style>
+
+  body
+{
+    margin:20px;
+    font-family:'Courier New', Courier, monospace;
+    background-color: #222;
+    color:white;
+}
+
+.grid-container 
+{
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: repeat(13, 1fr);
+    height: 60vh;
+    width: 40vw;
+    border: 2px solid #333;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    user-select: none;
+}
+
+.grid-item 
+{
+    background-color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    border: 1px solid #454444;
+    color:#ddd;
+}
+
+.grid-item:hover, button:hover
+{
+    cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+  color:white;
+}
+
+.mw-title
+{
+  position: absolute;
+  top : 60px;
+  left: 700px;
+  font-weight: bold;
+  width: 340px;
+}
+
+.mw-btn
+{
+  position: absolute;
+  top : 100px;
+  left: 700px;
+  width: 100px;
+}
+
+.mw-sb
+{
+  position: absolute;
+  top : 100px;
+  left: 820px;
+  width: 100px;
+}
+
+.mw-bb
+{
+  position: absolute;
+  top : 100px;
+  left: 940px;
+  width: 100px;
+}
+
+.mw-sb-vs-btn
+{
+  position: absolute;
+  top : 100px;
+  left: 1060px;
+  width: 100px;
+}
+
+.hu-title
+{
+  position: absolute;
+  top : 200px;
+  left: 700px;
+  font-weight: bold;
+  width: 220px;
+}
+
+.hu-sb
+{
+  position: absolute;
+  top : 140px;
+  left: 700px;
+  width: 100px;
+}
+
+.hu-bb
+{
+  position: absolute;
+  top : 140px;
+  left: 820px;
+  width: 100px;
+}
+
+
+
+.trainer
+{
+  position: absolute;
+  top : 220px;
+  left: 700px;
+  width: 100px;
+}
+
+#trainer-result
+{
+  position: absolute;
+  top : 220px;
+  left: 820px;
+  width: 200px;
+}
+
+
+</style>
+
+<body>
+
+    <!-- UPDATE -->
+   
+    <button class="mw-btn" id="" onclick="loadRange('MW_BTN')">BTN</button>
+    <button class="mw-sb" onclick="loadRange('MW_SB')">SB</button>
+    <button class="mw-bb" onclick="loadRange('MW_BB')">BB</button>
+    <button class="mw-sb-vs-btn" onclick="loadRange('MW_SB_VS_BTN')">SB VS BTN</button>
+  
+    <button class="hu-sb" onclick="loadRange('HU_SB')">SB</button>
+    <button class="hu-bb" onclick="loadRange('HU_BB')">BB</button>
+
+    <button class="trainer" id="train" onclick="trainerMode()">Train</button>
+    <div id="trainer-result"></div>
+  
+
+
+    <label>Save range name : </label>
+    <input type="text" id="filename">
+    <button onclick="save()">Save Range</button>
+    <button onclick="clearRange()">Clear Range</button>
+    <br>
+    <br>
+  <div class="grid-container">
+
+    <div class="grid-item" id="0">AAs</div>
+    <div class="grid-item" id="1">AKs</div>
+    <div class="grid-item" id="2">AQs</div>
+    <div class="grid-item" id="3">AJs</div>
+    <div class="grid-item" id="4">ATs</div>
+    <div class="grid-item" id="5">A9s</div>
+    <div class="grid-item" id="6">A8s</div>
+    <div class="grid-item" id="7">A7s</div>
+    <div class="grid-item" id="8">A6s</div>
+    <div class="grid-item" id="9">A5s</div>
+    <div class="grid-item" id="10">A4s</div>
+    <div class="grid-item" id="11">A3s</div>    
+    <div class="grid-item" id="12">A2s</div>
+
+    <div class="grid-item" id="13">AKo</div>
+    <div class="grid-item" id="14">KK</div>
+    <div class="grid-item" id="15">KQs</div>
+    <div class="grid-item" id="16">KJs</div>
+    <div class="grid-item" id="17">KTs</div>
+    <div class="grid-item" id="18">K9s</div>
+    <div class="grid-item" id="19">K8s</div>
+    <div class="grid-item" id="20">K7s</div>
+    <div class="grid-item" id="21">K6s</div>
+    <div class="grid-item" id="22">K5s</div>
+    <div class="grid-item" id="23">K4s</div>
+    <div class="grid-item" id="24">K3s</div>    
+    <div class="grid-item" id="25">K2s</div>
+
+    <div class="grid-item" id="26">AQo</div>
+    <div class="grid-item" id="27">KQo</div>
+    <div class="grid-item" id="28">QQ</div>
+    <div class="grid-item" id="29">QJs</div>
+    <div class="grid-item" id="30">QTs</div>
+    <div class="grid-item" id="31">Q9s</div>
+    <div class="grid-item" id="32">Q8s</div>
+    <div class="grid-item" id="33">Q7s</div>
+    <div class="grid-item" id="34">Q6s</div>
+    <div class="grid-item" id="35">Q5s</div>
+    <div class="grid-item" id="36">Q4s</div>
+    <div class="grid-item" id="37">Q3s</div>    
+    <div class="grid-item" id="38">Q2s</div>
+
+    <div class="grid-item" id="39">AJo</div>
+    <div class="grid-item" id="40">KJo</div>
+    <div class="grid-item" id="41">QJo</div>
+    <div class="grid-item" id="42">JJ</div>
+    <div class="grid-item" id="43">JTs</div>
+    <div class="grid-item" id="44">J9s</div>
+    <div class="grid-item" id="45">J8s</div>
+    <div class="grid-item" id="46">J7s</div>
+    <div class="grid-item" id="47">J6s</div>
+    <div class="grid-item" id="48">J5s</div>
+    <div class="grid-item" id="49">J4s</div>
+    <div class="grid-item" id="50">J3s</div>    
+    <div class="grid-item" id="51">J2s</div>
+
+    <div class="grid-item" id="52">ATo</div>
+    <div class="grid-item" id="53">KTo</div>
+    <div class="grid-item" id="54">QTo</div>
+    <div class="grid-item" id="55">JTo</div>
+    <div class="grid-item" id="56">TT</div>
+    <div class="grid-item" id="57">T9s</div>
+    <div class="grid-item" id="58">T8s</div>
+    <div class="grid-item" id="59">T7s</div>
+    <div class="grid-item" id="60">T6s</div>
+    <div class="grid-item" id="61">T5s</div>
+    <div class="grid-item" id="62">T4s</div>
+    <div class="grid-item" id="63">T3s</div>    
+    <div class="grid-item" id="64">T2s</div>
+
+    <div class="grid-item" id="65">A9o</div>
+    <div class="grid-item" id="66">K9o</div>
+    <div class="grid-item" id="67">Q9o</div>
+    <div class="grid-item" id="68">J9o</div>
+    <div class="grid-item" id="69">T9o</div>
+    <div class="grid-item" id="70">99</div>
+    <div class="grid-item" id="71">98s</div>
+    <div class="grid-item" id="72">97s</div>
+    <div class="grid-item" id="73">96s</div>
+    <div class="grid-item" id="74">95s</div>
+    <div class="grid-item" id="75">94s</div>
+    <div class="grid-item" id="76">93s</div>    
+    <div class="grid-item" id="77">92s</div>
+
+    <div class="grid-item" id="78">A8o</div>
+    <div class="grid-item" id="79">K8o</div>
+    <div class="grid-item" id="80">Q8o</div>
+    <div class="grid-item" id="81">J8o</div>
+    <div class="grid-item" id="82">T8o</div>
+    <div class="grid-item" id="83">98o</div>
+    <div class="grid-item" id="84">88</div>
+    <div class="grid-item" id="85">87s</div>
+    <div class="grid-item" id="86">86s</div>
+    <div class="grid-item" id="87">85s</div>
+    <div class="grid-item" id="88">84s</div>
+    <div class="grid-item" id="89">83s</div>    
+    <div class="grid-item" id="90">82s</div>
+
+    <div class="grid-item" id="91">A7o</div>
+    <div class="grid-item" id="92">K7o</div>
+    <div class="grid-item" id="93">Q7o</div>
+    <div class="grid-item" id="94">J7o</div>
+    <div class="grid-item" id="95">T7o</div>
+    <div class="grid-item" id="96">97o</div>
+    <div class="grid-item" id="97">87o</div>
+    <div class="grid-item" id="98">77</div>
+    <div class="grid-item" id="99">76s</div>
+    <div class="grid-item" id="100">75s</div>
+    <div class="grid-item" id="101">74s</div>
+    <div class="grid-item" id="102">73s</div>    
+    <div class="grid-item" id="103">72s</div>
+
+    <div class="grid-item" id="104">A6o</div>
+    <div class="grid-item" id="105">K6o</div>
+    <div class="grid-item" id="106">Q6o</div>
+    <div class="grid-item" id="107">J6o</div>
+    <div class="grid-item" id="108">T6o</div>
+    <div class="grid-item" id="109">96o</div>
+    <div class="grid-item" id="110">86o</div>
+    <div class="grid-item" id="111">76o</div>
+    <div class="grid-item" id="112">66</div>
+    <div class="grid-item" id="113">65s</div>
+    <div class="grid-item" id="114">64s</div>
+    <div class="grid-item" id="115">63s</div>    
+    <div class="grid-item" id="116">62s</div>
+
+    <div class="grid-item" id="117">A5o</div>
+    <div class="grid-item" id="118">K5o</div>
+    <div class="grid-item" id="119">Q5o</div>
+    <div class="grid-item" id="120">J5o</div>
+    <div class="grid-item" id="121">T5o</div>
+    <div class="grid-item" id="122">95o</div>
+    <div class="grid-item" id="123">85o</div>
+    <div class="grid-item" id="124">75o</div>
+    <div class="grid-item" id="125">65o</div>
+    <div class="grid-item" id="126">55</div>
+    <div class="grid-item" id="127">54s</div>
+    <div class="grid-item" id="128">53s</div>    
+    <div class="grid-item" id="129">52s</div>
+
+    <div class="grid-item" id="130">A4o</div>
+    <div class="grid-item" id="131">K4o</div>
+    <div class="grid-item" id="132">Q4o</div>
+    <div class="grid-item" id="133">J4o</div>
+    <div class="grid-item" id="134">T4o</div>
+    <div class="grid-item" id="135">94o</div>
+    <div class="grid-item" id="136">84o</div>
+    <div class="grid-item" id="137">74o</div>
+    <div class="grid-item" id="138">64o</div>
+    <div class="grid-item" id="139">54o</div>
+    <div class="grid-item" id="140">44</div>
+    <div class="grid-item" id="141">43s</div>    
+    <div class="grid-item" id="142">42s</div>
+
+    <div class="grid-item" id="143">A3o</div>
+    <div class="grid-item" id="144">K3o</div>
+    <div class="grid-item" id="145">Q3o</div>
+    <div class="grid-item" id="146">J3o</div>
+    <div class="grid-item" id="147">T3o</div>
+    <div class="grid-item" id="148">93o</div>
+    <div class="grid-item" id="149">83o</div>
+    <div class="grid-item" id="150">73o</div>
+    <div class="grid-item" id="151">63o</div>
+    <div class="grid-item" id="152">53o</div>
+    <div class="grid-item" id="153">43o</div>
+    <div class="grid-item" id="154">33</div>    
+    <div class="grid-item" id="155">32s</div>
+
+    <div class="grid-item" id="156">A2o</div>
+    <div class="grid-item" id="157">K2o</div>
+    <div class="grid-item" id="158">Q2o</div>
+    <div class="grid-item" id="159">J2o</div>
+    <div class="grid-item" id="160">T2o</div>
+    <div class="grid-item" id="161">92o</div>
+    <div class="grid-item" id="162">82o</div>
+    <div class="grid-item" id="163">72o</div>
+    <div class="grid-item" id="164">62o</div>
+    <div class="grid-item" id="165">52o</div>
+    <div class="grid-item" id="166">42o</div>
+    <div class="grid-item" id="167">32o</div>    
+    <div class="grid-item" id="168">22</div>
+
+  </div>
+
+    <br>
+    <button onclick ="setColor('#111')" style="color:whitesmoke;font-weight:bold;width: 60px;background-color: #111;">OF</button>
+    <button onclick ="setColor('#ec1313')" style="color:whitesmoke;font-weight:bold;width: 60px;background-color: #ec1313;">OJ SH</button>
+    <button onclick ="setColor('#dd991a')" style="color:whitesmoke;font-weight:bold;width: 60px;background-color: #dd991a;">OJ ME</button>
+    <button onclick ="setColor('#10ac1d')" style="color:whitesmoke;font-weight:bold;width: 60px;background-color: #10ac1d;">OJ HI</button>
+    <br><br>
+
+
+    <br><br>
+    <a href="Trainer.html">TRAINER ></a>
+    
+  <!-- UPDATE -->
+<script type="text/javascript" src="./ranges/MW_BTN.txt"></script>
+<script type="text/javascript" src="./ranges/MW_SB.txt"></script>
+<script type="text/javascript" src="./ranges/MW_SB_VS_BTN.txt"></script>
+<script type="text/javascript" src="./ranges/MW_BB.txt"></script>
+<script type="text/javascript" src="./ranges/HU_SB.txt"></script>
+<script type="text/javascript" src="./ranges/HU_BB.txt"></script>
+
+
+  <script>
+
+    var customRange = Array.from({ length: 169 }, (_, index) => 'white');
+    const elements = document.querySelectorAll('.grid-item');
+    var mycolor = "#111";
+    var mouseIsDown = 0;
+    var edit = true;
+    var train = false;
+
+    elements.forEach(element => element.addEventListener('click', event => 
+    {
+            if (edit)
+            {
+              event.target.style.backgroundColor=mycolor;
+              customRange[event.target.id] = mycolor;
+              console.log(event.target.id);
+            }
+
+    }));
+
+    window.onmousedown = () => mouseIsDown = 1;
+    window.onmouseup = () => mouseIsDown = 0;
+
+    elements.forEach(element => element.addEventListener('mouseenter', event => 
+    {
+            if (mouseIsDown && edit)
+            {
+              event.target.style.backgroundColor=mycolor;
+              customRange[event.target.id] = mycolor;
+            }
+
+    }));
+
+
+    function editMode()
+    {
+      edit = !edit;
+
+      if (edit)
+      {
+          document.getElementById("editor").innerText = "Edit On";
+          document.getElementById("editor").style.backgroundColor = "cyan";
+      }
+      else
+      {
+        document.getElementById("editor").innerHTML = "Edit";
+        document.getElementById("editor").style.backgroundColor = "whitesmoke";
+      }
+    }
+
+    function trainerMode()
+    {
+      train = !train;
+
+      if (train)
+      {
+          document.getElementById("train").innerText = "Trainer On";
+          document.getElementById("train").style.backgroundColor = "cyan";
+          document.getElementById("trainer-result").innerHTML = "";
+      }
+      else
+      {
+        document.getElementById("train").innerHTML = "Train";
+        document.getElementById("train").style.backgroundColor = "whitesmoke";
+        document.getElementById("trainer-result").innerHTML = "";
+      }
+    }
+
+    function save()
+    {
+            var filename = document.getElementById("filename").value;
+
+            if (filename ==="")
+            {
+              alert("no filename");
+            }
+            else
+            {
+              
+              var cdata = new Array();
+              cdata[0] = "";
+              cdata[0] = "var " + filename + " = [";
+              for (var i=0;i<169;i++)
+              {
+                  cdata[0] += "'" + customRange[i] + "'";
+                  if (i<168)
+                      cdata[0] += ", ";
+              }
+              cdata[0] += "];"
+              
+              const blob = new Blob(cdata, { type: "text" });   
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = filename + ".txt";
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
+            }
+
+
+    }
+
+    function setColor(newColor)
+    {
+        if (edit) mycolor = newColor;
+    }
+    
+
+    function loadRange(range_id)
+    {
+        // UPDATE
+        switch(range_id)
+        {
+          case "MW_BTN" : customRange = MW_BTN; document.getElementById("filename").value = "MW_BTN";break;
+          case "MW_SB" : customRange = MW_SB; document.getElementById("filename").value = "MW_SB";break;
+          case "MW_BB" : customRange = MW_BB; document.getElementById("filename").value = "MW_BB";break;
+          case "MW_SB_VS_BTN" : customRange = MW_SB_VS_BTN; document.getElementById("filename").value = "MW_SB_VS_BTN";break;
+          case "HU_SB" : customRange = HU_SB; document.getElementById("filename").value = "HU_SB";break;
+          case "HU_BB" : customRange = HU_BB; document.getElementById("filename").value = "HU_BB";break;
+          default: break;
+        }
+
+        if (!train)
+        {
+          //clearRange();
+
+          for (let i=0;i<169;i++)
+          {
+              document.getElementById(i).style.backgroundColor = customRange[i];
+          }
+        }
+        else
+        {
+            let score = 0;
+            document.getElementById("trainer-result").innerHTML = "";
+
+            for (let i=0;i<169;i++)
+            {
+              let cc = rgbToHex(document.getElementById(i).style.backgroundColor);
+              console.log(cc, customRange[i]);
+              if (cc === customRange[i])
+                score++;
+            }
+
+            document.getElementById("trainer-result").innerHTML = parseInt(score/169 * 100*10)/100;
+        }
+
+
+    }
+
+    function clearRange()
+    {
+      for (let i=0;i<169;i++)
+      {
+        document.getElementById(i).style.backgroundColor = "#111";
+        customRange = Array.from({ length: 169 }, (_, index) => '#111');
+      }
+    }
+
+    function rgbToHex(rgb) {
+  // Extract numbers from the rgb string
+  const result = rgb.match(/\d+/g);
+  if (!result) return null;
+
+  // Convert each component to hex and pad with '0' if needed
+  const r = parseInt(result[0], 16).toString(16).padStart(2, '0');
+  const g = parseInt(result[1], 16).toString(16).padStart(2, '0');
+  const b = parseInt(result[2], 16).toString(16).padStart(2, '0');
+
+  return `#${r}${g}${b}`;
+}
+
+  </script>
+
+</body>
+</html>   

@@ -1,0 +1,52 @@
+MW BTN 
+======
+
+A7X 	J9
+AX 	T8
+K6,Q6 	98
+
+
+
+MW SB 
+=====
+
+AK 97
+KX,QX
+QX,JX 	76 + J5,T4
+
+
+
+MW BB
+=====
+
+A74 	BW
+AX 	BW
+Q6X	96
+
+
+
+SB VS BTN
+=========
+
+A9X 	BW-1/QJo	BWs 
+AX 	T9
+AX	97
+
+
+
+HU SB
+=====
+
+AQ	86
+AQ	86	+K5
+QX,JX	76 	+J4,T4
+
+
+
+
+HU BB
+=====
+
+A4,X  	0,9 	+T8s,98s,87s
+K5,Q6	98
+J5,T4	76

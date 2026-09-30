@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer</title>
+</head>
+<style>
+    body
+    {
+        margin: 10px;
+        background-color: #222;
+        color:white;
+    }
+
+    .title
+    {
+        border:1px solid white;
+        width: 400px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 25px;
+        border-radius: 5px;
+    }
+
+    .positions
+    {
+        width: 400px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 25px;
+        border-radius: 5px;
+    }
+
+    .btns
+    {
+        margin: 10px;
+        height: 40px;
+        width: 30vw;
+    }
+
+    .btn_start
+    {
+        margin: 10px;
+        height: 40px;
+        width: 100%;
+        font-size: 25px;
+        font-weight: bold;
+        background-color:rgb(223, 236, 37);
+    }
+
+    .mw
+    {
+        background-color: bisque;
+    }
+    .hu
+    {
+        background-color:cornflowerblue;
+        color:white
+    }
+    .rand
+    {
+        background-color:coral;
+        color:white
+    }
+
+    .deep
+    {
+        background-color: rgb(12, 241, 12);
+    }
+
+    .mid
+    {
+        background-color: rgb(225, 238, 49);
+    }
+
+    .short
+    {
+        background-color: rgb(238, 33, 33);
+        color:white;
+    }
+
+
+    .poker_table
+    {
+        width: 400px;
+        height: 200px;
+        background-color: #911111;
+        border-radius: 50%;
+        border: 4px solid grey;
+    }
+
+    .poker_button_1
+    {
+        border: 1px solid whitesmoke;
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        background-color:whitesmoke;
+        position: relative;
+        top:-150px;
+        left:110px;
+        color:black;
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        visibility: visible;
+    }
+
+    .poker_button_2
+    {
+        border: 1px solid whitesmoke;
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        background-color:whitesmoke;
+        position: relative;
+        top:-177px;
+        left:260px;
+        color:black;
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        visibility: hidden;
+    }
+
+    .poker_button_3
+    {
+        border: 1px solid whitesmoke;
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        background-color:whitesmoke;
+        position: relative;
+        top:-135px;
+        left:230px;
+        color:black;
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        visibility: hidden;
+    }
+
+    .holecard_pA1
+    {
+        background-color: orange;
+        border:1px solid black;
+        width: 40px;
+        height: 60px;
+        position: relative;
+        top: 25px;
+        left:45px;
+        border-radius: 5px;
+        display: inline-flex;
+    }
+
+    .holecard_pA2
+    {
+        background-color: orange;
+        border:1px solid black;
+        width: 40px;
+        height: 60px;
+        position: relative;
+        top: 35px;
+        left:20px;
+        border-radius: 5px;
+        display: inline-flex;
+    }
+
+
+    .holecard_pB1
+    {
+        background-color: orange;
+        border:1px solid black;
+        width: 40px;
+        height: 60px;
+        position: relative;
+        top: 25px;
+        left:195px;
+        border-radius: 5px;
+        display: inline-flex;
+    }
+
+    .holecard_pB2
+    {
+        background-color: orange;
+        border:1px solid black;
+        width: 40px;
+        height: 60px;
+        position: relative;
+        top: 35px;
+        left:170px;
+        border-radius: 5px;
+        display: inline-flex;
+    }
+
+    .holecard_pC1
+    {
+        background-color:gold;
+        border:1px solid black;
+        width: 60px;
+        height: 80px;
+        position: relative;
+        top: 100px;
+        left:140px;
+        border-radius: 5px;
+        display: inline-flex;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 4em;
+        color:black;
+        font-weight: bold;
+    }
+
+    .holecard_pC2
+    {
+        background-color: gold;
+        border:1px solid black;
+        width: 60px;
+        height: 80px;
+        position: relative;
+        top: 18px;
+        left:205px;
+        border-radius: 5px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 4em;
+        font-weight: bold;
+        color:black;
+    }
+
+    .action
+    {
+        margin-top: 50px;
+        display: inline-flex;
+        width: 400px;
+        
+    }
+
+    .btns_action
+    {
+        
+        height: 50px;
+        width:100%;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .correct
+    {
+        border: 1px solid white;
+        margin-top: 10px;
+        display: flex;
+        width: 400px;
+        height: 50px;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5em;
+        background-color: greenyellow;
+        color: black;
+    }
+
+    .incorrect
+    {
+        border: 1px solid white;
+        margin-top: 10px;
+        display: flex;
+        width: 400px;
+        height: 50px;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5em;
+        background-color: #d11717;
+        color: white;
+    }
+
+    .neutral
+    {
+        border: 1px solid white;
+        margin-top: 10px;
+        display: flex;
+        width: 400px;
+        height: 50px;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5em;
+        background-color: #888787;
+        color: white;
+    }
+
+
+</style>
+<body>
+    <div class="title">RANGE TRAINER</div>
+    
+    <div class="positions">
+        <button class="btns mw" onclick="loadRange('MW_BTN')">BTN</button>
+        <button class="btns mw" onclick="loadRange('MW_SB')">SB</button>
+        <button class="btns mw" onclick="loadRange('MW_SBvBTN')">SBvBTN</button>
+        <button class="btns mw" onclick="loadRange('MW_BB')">BB</button>
+        <button class="btns hu" onclick="loadRange('HU_SB')">SB</button>
+        <button class="btns hu" onclick="loadRange('HU_BB')">BB</button>
+    </div>
+
+    <div class="positions">
+        <button class="btns deep" onclick="selectStack(2)">Deep</button>
+        <button class="btns mid" onclick="selectStack(1)">Mid</button>
+        <button class="btns short" onclick="selectStack(0)">Short</button>
+        <button class="btns rand" onclick="selectStack(4)">RANDOM</button>
+    </div>
+
+    <div class="positions">
+        <button class="btn_start" id="bt_start" onclick="startGame()">START</button>
+    </div>
+
+    <div class="poker_table">
+        <div class="holecard_pA1"></div>
+        <div class="holecard_pA2"></div>
+        
+
+        <div class="holecard_pB1" id="hb1"></div>
+        <div class="holecard_pB2" id="hb2"></div>
+
+        <div class="holecard_pC1" id="hc1">X</div>
+        <div class="holecard_pC2" id="hc2">X</div>
+
+        <div class="poker_button_1" id="pb1">B</div>
+        <div class="poker_button_2" id="pb2">B</div>
+        <div class="poker_button_3" id="pb3">B</div>
+      
+    </div>
+
+    <div class="action">
+         <button class="btns_action" onclick="checkResult('#111')">FOLD</button>
+         <button class="btns_action" onclick="checkResult('')">JAM</button>
+    </div>
+
+    <div class="neutral" id="displ"></div>
+
+    
+   
+    <!-- UPDATE -->
+    <script type="text/javascript" src="./ranges/MW_BTN.txt"></script>
+    <script type="text/javascript" src="./ranges/MW_SB.txt"></script>
+    <script type="text/javascript" src="./ranges/MW_SB_VS_BTN.txt"></script>
+    <script type="text/javascript" src="./ranges/MW_BB.txt"></script>
+    <script type="text/javascript" src="./ranges/HU_SB.txt"></script>
+    <script type="text/javascript" src="./ranges/HU_BB.txt"></script>
+
+    <script>
+        var cards = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7','6', '5','4','3','2'];
+        var holecards = [ 'AA', 'AKs', 'AQs', 'AJs', 'AQ']
+        var score = 0;
+        var tries = 0;
+        var currentHandIndex = 0;
+        var currentRangeName = "";
+        var currentStackName ="";
+        var stackSize=0; // 0 : low, 1: mid, 2 : hi
+        var currentRange;
+        var actionColors = ["#ec1313","#dd991a","#10ac1d","#111"];
+        var currentHandName = "";
+
+        function genHand()
+        {
+            var card1Index = Math.floor(Math.random() * 13);
+            var card2Index = Math.floor(Math.random() * 13);
+            var card1 = cards[card1Index];
+            var card2 = cards[card2Index];
+            var suited= Math.floor(Math.random() * 16) < 4;
+            var hand = "";
+            var pair = false;
+            var suitedPrefix = "";
+            var correctAnswer = "";
+            var answered = "";
+            
+    
+       
+            if (card1Index === card2Index)
+            {
+                suited = false;
+                pair = true;
+            }
+
+            if (card1Index > card2Index)
+            {
+                var temp = card1Index;
+                card1Index = card2Index;
+                card2Index = temp;
+
+                temp = card1;
+                card1 = card2;
+                card2 = temp;
+            }
+
+            if (suited && !pair)
+            {
+                suitedPrefix = "s";
+            }
+            else if( !suited &&  !pair)
+            {
+                suitedPrefix = "o";
+            }
+
+            hand = cards[card1Index] + cards[card2Index] + suitedPrefix;
+            currentHandName = hand;
+
+            if (pair)
+            {
+                currentHandIndex = cards.indexOf(card1) * 13 + cards.indexOf(card1);
+            }
+            else if (!suited)
+            {
+
+                currentHandIndex = 13 * cards.indexOf(card2) + cards.indexOf(card1);
+             
+            }
+            else  
+            {
+
+                currentHandIndex = cards.indexOf(card1) * 13 + cards.indexOf(card2);
+
+            }
+
+            var hc1 = document.getElementById("hc1");
+            var hc2 = document.getElementById("hc2");
+            hc1.innerHTML = cards[card1Index];
+            hc2.innerHTML = cards[card2Index];
+
+            if (!suited || pair)
+            {
+                hc1.style.backgroundColor = "gold";
+                hc2.style.backgroundColor = "lightblue";
+            }
+            else if (suited)
+            {
+                hc1.style.backgroundColor = "gold";
+                hc2.style.backgroundColor = "gold";
+            }
+
+            return currentHandIndex;
+
+        }
+
+        function loadRange(selrange)
+        {
+            switch(selrange)
+            {
+                case "MW_BTN" :     currentRange = MW_BTN; currentRangeName = "MW BTN";break;
+                case "MW_SB" :      currentRange = MW_SB; currentRangeName = "MW SB";break;
+                case "MW_BB" :      currentRange = MW_BB; currentRangeName = "MW BB";break;
+                case "MW_SBvBTN" :  currentRange = MW_SB_VS_BTN; currentRangeName = "MW SBvBTN";break;
+                case "HU_SB" :      currentRange = HU_SB; currentRangeName = "HU SB";break;
+                case "HU_BB" :      currentRange = HU_BB; currentRangeName = "HU BB";break;
+                default: break;
+            }
+
+            setPokerButton(selrange);
+
+            startGame();
+        }
+
+        function setPokerButton(pos)
+        {
+         
+            if (pos === "MW_BTN")
+            {
+                document.getElementById("pb1").style.visibility = "hidden";
+                document.getElementById("pb2").style.visibility = "hidden";
+                document.getElementById("pb3").style.visibility = "visible";
+                document.getElementById("hb1").style.visibility = "visible";
+                document.getElementById("hb2").style.visibility = "visible";
+            }
+
+            if (pos === "MW_SB")
+            {
+                document.getElementById("pb1").style.visibility = "hidden";
+                document.getElementById("pb2").style.visibility = "visible";
+                document.getElementById("pb3").style.visibility = "hidden";
+                document.getElementById("hb1").style.visibility = "visible";
+                document.getElementById("hb2").style.visibility = "visible";
+            }
+
+            if (pos === "MW_SBvBTN")
+            {
+                document.getElementById("pb1").style.visibility = "hidden";
+                document.getElementById("pb2").style.visibility = "visible";
+                document.getElementById("pb3").style.visibility = "hidden";
+                document.getElementById("hb1").style.visibility = "visible";
+                document.getElementById("hb2").style.visibility = "visible";
+            }
+
+            if (pos === "MW_BB")
+            {
+                document.getElementById("pb1").style.visibility = "visible";
+                document.getElementById("pb2").style.visibility = "hidden";
+                document.getElementById("pb3").style.visibility = "hidden";
+                document.getElementById("hb1").style.visibility = "visible";
+                document.getElementById("hb2").style.visibility = "visible";
+            }
+
+            if (pos === "HU_SB")
+            {
+                document.getElementById("pb1").style.visibility = "hidden";
+                document.getElementById("pb2").style.visibility = "hidden";
+                document.getElementById("pb3").style.visibility = "visible";
+                document.getElementById("hb1").style.visibility = "hidden";
+                document.getElementById("hb2").style.visibility = "hidden";
+            }
+
+            if (pos === "HU_BB")
+            {
+                document.getElementById("pb1").style.visibility = "visible";
+                document.getElementById("pb2").style.visibility = "hidden";
+                document.getElementById("pb3").style.visibility = "hidden";
+                document.getElementById("hb1").style.visibility = "hidden";
+                document.getElementById("hb2").style.visibility = "hidden";
+            }
+        }
+
+        function selectStack(stacks)
+        {
+            switch(stacks)
+            {
+                case 0 : stackSize = 0; currentStackName="0 - 5 BB"; break;
+                case 1 : stackSize = 1; currentStackName="6 - 10 BB"; break;
+                case 2 : stackSize = 2; currentStackName="11 - 15 BB"; break;
+                case 4 : stackSize = 3; currentStackName="RAND"; break;
+                default: break;
+            }
+
+            startGame();
+        }
+
+        function startGame()
+        {
+            document.getElementById("bt_start").innerHTML = currentStackName;
+
+            nextHand();
+        }
+
+        function nextHand()
+        {
+            if (currentRangeName != "" && currentStackName != "")
+            {
+                genHand();
+            }
+        }
+
+        function checkResult(cval)
+        {
+            var answer = "#111";
+            var currentColor = currentRange[currentHandIndex];
+            //console.log(currentHandName + " : " + currentColor + ", index : " + currentHandIndex);
+
+            // only deep
+            if (stackSize === 2 && (currentColor == actionColors[2]))
+            {
+                answer = "";
+                //console.log("Just deepstack");
+            }
+
+            // only deep + mid
+            if (stackSize === 1 && (currentColor == actionColors[2] || currentColor == actionColors[1]))
+            {
+                answer = "";
+                //console.log("Just midstack");
+            }
+
+            // only deep + mid + low
+            if (stackSize === 0 && (currentColor == actionColors[2] || currentColor == actionColors[1] || currentColor == actionColors[0]))
+            {
+                answer = "";
+                //console.log("Just low stack");
+            }
+
+            if (cval === answer)
+            {
+                //console.log("Correct answer");
+                displayAnswer(true);
+            }
+            else
+            {
+                //console.log("wrong answer");
+                displayAnswer(false);
+            }
+
+            sleep(1000).then(() => 
+            { 
+                resetDisplay();
+                genHand();
+            });
+
+        }
+
+        function displayAnswer(res)
+        {
+            var disp = document.getElementById("displ");
+            if (res)
+            {
+                disp.innerHTML="CORRECT !";
+                disp.style.backgroundColor = "greenyellow";
+                disp.style.color="black";
+            }
+            else
+            {
+                disp.innerHTML="INCORRECT";
+                disp.style.backgroundColor = "#d11717";
+                disp.style.color="white";
+            }
+        
+
+        }
+
+        function resetDisplay()
+        {
+            var disp = document.getElementById("displ");
+            disp.innerHTML="";
+            disp.style.backgroundColor = "#888787";
+            disp.style.color="white";
+        }
+
+        function sleep(ms) 
+        {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+
+
+
+
+
+       
+    </script>
+</body>
+</html>
+
+
