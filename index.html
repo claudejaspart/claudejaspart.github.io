@@ -57,7 +57,8 @@
             .tabcontent 
             {
                 position: absolute;
-                left: 180px;
+                top:200px;
+                left: 190px;
                 padding-left: 20px;
                 border-left: none;
                 color:whitesmoke;
@@ -88,16 +89,30 @@
             {
                 background-color: #e4ec6b;
             }
+
+            .title
+            {
+                height: 200px;
+                color:whitesmoke;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                width: 100vw;
+                font-size: 30px;
+
+            }
         </style>
     </head>
 
     <body>
 
+    <div class="title"><h1>EASY RANGES</h1></div>
+
     <div class="tab">
         <button class="tablinks multi" onclick="openRange(event, 'BU')" id="defaultOpen">BTN</button>
         <button class="tablinks multi" onclick="openRange(event, 'SB')">SB</button>
         <button class="tablinks multi" onclick="openRange(event, 'BB')">BB</button>
-        <button class="tablinks multivs" onclick="openRange(event, 'SBvBU')">SBvBU</button>
+        <button class="tablinks multivs" onclick="openRange(event, 'SBvBU')">SB vs BTN</button>
         <button class="tablinks headsup" onclick="openRange(event, 'HU_SB')">HU SB</button>
         <button class="tablinks headsup"  onclick="openRange(event, 'HU_BB')">HU BB</button>
     </div>
@@ -124,7 +139,7 @@
     </div>
 
     <div id="SBvBU" class="tabcontent">
-    <h3>SB vs BTN</h3>
+    <h3>SBvsBU/h3>
     <p>MA J9</p>
     <p>AX T8</p>
     <p>AK 98</p>
